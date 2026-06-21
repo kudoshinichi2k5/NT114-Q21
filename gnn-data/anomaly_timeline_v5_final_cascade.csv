@@ -1,0 +1,3 @@
+start_ts,end_ts,label,anomaly_type,affected_service,affected_edge
+1779864401,1779865002,1,final_productcatalog_read_path_cascade,productcatalogservice,frontend->productcatalogservice|recommendationservice->productcatalogservice
+1779865443,1779866044,1,final_checkout_payment_coupled_cascade,checkoutservice|paymentservice,frontend->checkoutservice|checkoutservice->paymentservice

@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: checkoutservice-final-cascade
+  namespace: online-boutique
+spec:
+  hosts:
+  - checkoutservice
+  http:
+  - fault:
+      delay:
+        percentage:
+          value: 50
+        fixedDelay: 1500ms
+      abort:
+        percentage:
+          value: 8
+        httpStatus: 500
+    route:
+    - destination:
+        host: checkoutservice

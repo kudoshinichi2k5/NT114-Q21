@@ -1,0 +1,4 @@
+start_ts,end_ts,label,anomaly_type,affected_service,affected_edge
+1779702404,1779702885,1,productcatalog_latency_bottleneck,productcatalogservice,frontend->productcatalogservice|recommendationservice->productcatalogservice
+1779703186,1779703667,1,cartservice_latency_error_bottleneck,cartservice,frontend->cartservice|checkoutservice->cartservice
+1779703968,1779704449,1,paymentservice_checkout_chain_error,paymentservice,checkoutservice->paymentservice

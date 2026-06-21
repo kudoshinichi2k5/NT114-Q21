@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: recommendationservice-v5-fault
+  namespace: online-boutique
+spec:
+  hosts:
+  - recommendationservice
+  http:
+  - fault:
+      delay:
+        percentage:
+          value: 40
+        fixedDelay: 1000ms
+    route:
+    - destination:
+        host: recommendationservice

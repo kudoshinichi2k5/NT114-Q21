@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: productcatalogservice-v5-fault
+  namespace: online-boutique
+spec:
+  hosts:
+  - productcatalogservice
+  http:
+  - fault:
+      delay:
+        percentage:
+          value: 40
+        fixedDelay: 900ms
+    route:
+    - destination:
+        host: productcatalogservice
