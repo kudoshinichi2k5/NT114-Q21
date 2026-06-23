@@ -1,15 +1,4 @@
 #!/bin/bash
-# ============================================================
-# collect_action_effect.sh
-# ============================================================
-# Thu thập dữ liệu action-effect thật:
-# (r_old, r_new, action, metrics_before, load)
-#        -> metrics_after
-#
-# Dùng để train Learned Capacity Model cho Offline RL.
-# Script sẽ tắt HPA trước khi chạy và khôi phục lại khi thoát.
-# ============================================================
-
 set -euo pipefail
 
 WORKER_IP="192.168.120.185"
@@ -21,289 +10,419 @@ PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 LOCUSTFILE="$PROJECT_ROOT/workload/locustfile.py"
 
 OUTDIR="./action_effect_data"
-OUTFILE="$OUTDIR/action_effect_pairs.csv"
+OUTFILE="$OUTDIR/action_effect_pairs_final.csv"
 
 mkdir -p "$OUTDIR"
 
-SERVICES=(
-    "frontend"
-    "checkoutservice"
-    "currencyservice"
-    "cartservice"
-    "productcatalogservice"
-    "recommendationservice"
-    "shippingservice"
-    "adservice"
-    "emailservice"
-    "paymentservice"
+LEAF_SERVICES=("adservice" "emailservice" "currencyservice" "shippingservice")
+
+CORE_SERVICES=(
+  "frontend"
+  "cartservice"
+  "checkoutservice"
+  "paymentservice"
+  "productcatalogservice"
+  "recommendationservice"
 )
 
-LOAD_LEVELS=(40 80 120 160)
+ALL_SERVICES=("${LEAF_SERVICES[@]}" "${CORE_SERVICES[@]}")
 
-TRIALS_PER_LOAD=40
+NORMAL_LOAD_LEVELS=(80 140 200 260)
+ERROR_LOAD_LEVELS=(180 250)
 
-SETTLE_BEFORE=60
-SETTLE_AFTER=75
+LEAF_TRIALS_NORMAL=18
+CORE_TRIALS_NORMAL=26
+
+LEAF_TRIALS_ERROR=8
+CORE_TRIALS_ERROR=10
+
+SETTLE_BEFORE=45
+SETTLE_AFTER=55
+
+METRIC_WINDOW="45s"
 
 R_MIN=1
 R_MAX=10
 
-EXPECTED_HEADER="timestamp,load_level,service,r_old,r_new,action,effective_delta,cpu_before,rps_before,err_before,lat_before,cpu_after,rps_after,err_after,lat_after"
+MAX_RUNTIME_SECONDS=24600   # 6h50m
+START_TIME=$(date +%s)
 
-# ============================================================
-# CLEANUP
-# ============================================================
+EXPECTED_HEADER="timestamp,phase,error_injected,load_level,group,service,r_old,r_new,action,effective_delta,cpu_before,rps_before,err_before,lat_before,cpu_after,rps_after,err_after,lat_after"
 
 stop_locust() {
-    pkill -f "locust" 2>/dev/null || true
-    sleep 2
+  pkill -f "locust" 2>/dev/null || true
+  sleep 2
 }
 
 restore_hpa() {
-    echo "[CLEANUP] Khôi phục lại HPA cho tất cả services..."
-    for svc in "${SERVICES[@]}"; do
-        kubectl autoscale deployment "$svc" -n "$NAMESPACE" \
-            --cpu-percent=70 --min="$R_MIN" --max="$R_MAX" \
-            >/dev/null 2>&1 || true
-    done
-    echo "  ✓ HPA restored"
-}
-
-cleanup() {
-    echo ""
-    echo "[CLEANUP] Dừng Locust và khôi phục HPA..."
-    stop_locust
-    restore_hpa
-}
-
-trap cleanup EXIT
-
-# ============================================================
-# HELPERS
-# ============================================================
-
-start_locust_background() {
-    local users=$1
-    local spawn=$2
-
-    stop_locust
-
-    nohup locust -f "$LOCUSTFILE" \
-        --host "$TARGET" \
-        --headless \
-        --users "$users" \
-        --spawn-rate "$spawn" \
-        --run-time 0 \
-        --loglevel WARNING \
-        > /tmp/locust_action_effect.log 2>&1 &
-
-    echo "  [locust] started: $users users (PID $!)"
+  echo "[CLEANUP] Restore HPA..."
+  for svc in "${ALL_SERVICES[@]}"; do
+    kubectl autoscale deployment "$svc" -n "$NAMESPACE" \
+      --cpu-percent=70 --min="$R_MIN" --max=5 \
+      >/dev/null 2>&1 || true
+  done
 }
 
 disable_hpa() {
-    echo "[SETUP] Tắt HPA tất cả services..."
-    for svc in "${SERVICES[@]}"; do
-        kubectl delete hpa "$svc" -n "$NAMESPACE" --ignore-not-found || true
-    done
-    sleep 5
+  echo "[SETUP] Delete HPA..."
+  for svc in "${ALL_SERVICES[@]}"; do
+    kubectl delete hpa "$svc" -n "$NAMESPACE" --ignore-not-found >/dev/null 2>&1 || true
+  done
+  sleep 5
+}
+
+disable_error_injection() {
+  kubectl delete virtualservice checkout-error-injection -n "$NAMESPACE" \
+    --ignore-not-found >/dev/null 2>&1 || true
+}
+
+enable_error_injection() {
+  local percent="$1"
+
+  echo "[SETUP] Enable Istio fault injection: checkoutservice ${percent}% 503"
+
+  cat <<EOF | kubectl apply -n "$NAMESPACE" -f - >/dev/null
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: checkout-error-injection
+spec:
+  hosts:
+  - checkoutservice
+  - checkoutservice.online-boutique.svc.cluster.local
+  http:
+  - fault:
+      abort:
+        percentage:
+          value: ${percent}
+        httpStatus: 503
+    route:
+    - destination:
+        host: checkoutservice
+        port:
+          number: 5050
+EOF
+
+  sleep 5
+}
+
+cleanup() {
+  echo ""
+  echo "[CLEANUP] Stop Locust, disable fault injection, restore HPA..."
+  stop_locust
+  disable_error_injection
+  restore_hpa
+}
+
+trap cleanup EXIT INT TERM
+
+check_time_budget() {
+  local now elapsed
+  now=$(date +%s)
+  elapsed=$((now - START_TIME))
+
+  if [ "$elapsed" -ge "$MAX_RUNTIME_SECONDS" ]; then
+    echo ""
+    echo "[STOP] Reached time budget: ${elapsed}s >= ${MAX_RUNTIME_SECONDS}s"
+    echo "[STOP] Ending collection safely."
+    exit 0
+  fi
+}
+
+start_locust_background() {
+  local users=$1
+  local spawn=$2
+
+  stop_locust
+
+  nohup locust -f "$LOCUSTFILE" \
+    --host "$TARGET" \
+    --headless \
+    --users "$users" \
+    --spawn-rate "$spawn" \
+    --run-time 0 \
+    --loglevel WARNING \
+    > /tmp/locust_action_effect_final.log 2>&1 &
+
+  echo "  [locust] started: users=$users spawn=$spawn pid=$!"
 }
 
 get_current_replicas() {
-    local svc=$1
-    local replicas
+  local svc=$1
+  local replicas
 
-    replicas=$(kubectl get deployment "$svc" -n "$NAMESPACE" \
-        -o jsonpath='{.spec.replicas}' 2>/dev/null || true)
+  replicas=$(kubectl get deployment "$svc" -n "$NAMESPACE" \
+    -o jsonpath='{.spec.replicas}' 2>/dev/null || true)
 
-    if [[ -z "$replicas" ]]; then
-        echo "1"
-    else
-        echo "$replicas"
-    fi
+  echo "${replicas:-1}"
 }
 
 scale_service() {
-    local svc=$1
-    local replicas=$2
+  local svc=$1
+  local replicas=$2
 
-    kubectl scale deployment "$svc" -n "$NAMESPACE" --replicas="$replicas" \
-        >/dev/null 2>&1
+  kubectl scale deployment "$svc" -n "$NAMESPACE" --replicas="$replicas" \
+    >/dev/null 2>&1
 }
 
 prom_instant() {
-    local promql="$1"
+  local promql="$1"
 
-    curl -s -G "$PROMETHEUS/api/v1/query" \
-        --data-urlencode "query=${promql}" \
-        | python3 -c "
+  curl -s -G "$PROMETHEUS/api/v1/query" \
+    --data-urlencode "query=${promql}" \
+    | python3 -c "
 import sys, json
 try:
     d = json.load(sys.stdin)
     r = d.get('data', {}).get('result', [])
-    if not r:
-        print('0')
-    else:
-        print(sum(float(x['value'][1]) for x in r))
+    print('0' if not r else sum(float(x['value'][1]) for x in r))
 except Exception:
     print('0')
 "
 }
 
 fetch_service_metrics() {
-    local svc=$1
-    local cpu rps err lat
+  local svc=$1
+  local cpu rps err lat
 
-    cpu=$(prom_instant "sum(rate(container_cpu_usage_seconds_total{namespace=\"${NAMESPACE}\",pod=~\"${svc}-.*\",container!=\"\",container!=\"POD\"}[1m]))*1000")
+  cpu=$(prom_instant "sum(rate(container_cpu_usage_seconds_total{namespace=\"${NAMESPACE}\",pod=~\"${svc}-.*\",container!=\"\",container!=\"POD\"}[${METRIC_WINDOW}]))*1000")
 
-    rps=$(prom_instant "sum(rate(istio_requests_total{destination_service_namespace=\"${NAMESPACE}\",destination_canonical_service=\"${svc}\"}[1m]))")
+  rps=$(prom_instant "sum(rate(istio_requests_total{destination_service_namespace=\"${NAMESPACE}\",destination_canonical_service=\"${svc}\"}[${METRIC_WINDOW}]))")
 
-    err=$(prom_instant "sum(rate(istio_requests_total{destination_service_namespace=\"${NAMESPACE}\",destination_canonical_service=\"${svc}\",response_code=~\"5..\"}[1m]))/(sum(rate(istio_requests_total{destination_service_namespace=\"${NAMESPACE}\",destination_canonical_service=\"${svc}\"}[1m]))+0.000001)")
+  err=$(prom_instant "sum(rate(istio_requests_total{destination_service_namespace=\"${NAMESPACE}\",destination_canonical_service=\"${svc}\",response_code=~\"5..\"}[${METRIC_WINDOW}]))/(sum(rate(istio_requests_total{destination_service_namespace=\"${NAMESPACE}\",destination_canonical_service=\"${svc}\"}[${METRIC_WINDOW}]))+0.000001)")
 
-    lat=$(prom_instant "histogram_quantile(0.99,sum by (le)(rate(istio_request_duration_milliseconds_bucket{destination_service_namespace=\"${NAMESPACE}\",destination_canonical_service=\"${svc}\"}[1m])))/1000")
+  lat=$(prom_instant "histogram_quantile(0.99,sum by (le)(rate(istio_request_duration_milliseconds_bucket{destination_service_namespace=\"${NAMESPACE}\",destination_canonical_service=\"${svc}\"}[${METRIC_WINDOW}])))/1000")
 
-    echo "${cpu},${rps},${err},${lat}"
+  echo "${cpu},${rps},${err},${lat}"
 }
 
 choose_action() {
-    local r_old=$1
-    local rand=$((RANDOM % 10))
-    local action
+  local r_old=$1
+  local rand=$((RANDOM % 10))
+  local action
 
-    if [ "$r_old" -le "$R_MIN" ]; then
-        # Ở min pod thì tránh scale down vô hiệu quá nhiều
-        if [ "$rand" -lt 7 ]; then
-            action=1
-        else
-            action=0
-        fi
-    elif [ "$r_old" -ge "$R_MAX" ]; then
-        # Ở max pod thì tránh scale up vô hiệu quá nhiều
-        if [ "$rand" -lt 7 ]; then
-            action=-1
-        else
-            action=0
-        fi
-    else
-        # Ở giữa giữ phân phối tương đối tự nhiên
-        if [ "$rand" -lt 4 ]; then
-            action=1
-        elif [ "$rand" -lt 8 ]; then
-            action=-1
-        else
-            action=0
-        fi
+  if [ "$r_old" -le "$R_MIN" ]; then
+    if [ "$rand" -lt 7 ]; then action=1; else action=0; fi
+  elif [ "$r_old" -ge "$R_MAX" ]; then
+    if [ "$rand" -lt 7 ]; then action=-1; else action=0; fi
+  else
+    if [ "$rand" -lt 4 ]; then action=1
+    elif [ "$rand" -lt 8 ]; then action=-1
+    else action=0
     fi
+  fi
 
-    echo "$action"
+  echo "$action"
 }
 
-# ============================================================
-# INIT CSV
-# ============================================================
+clamp_replicas() {
+  local r=$1
 
-if [ -f "$OUTFILE" ]; then
+  if [ "$r" -lt "$R_MIN" ]; then r=$R_MIN; fi
+  if [ "$r" -gt "$R_MAX" ]; then r=$R_MAX; fi
+
+  echo "$r"
+}
+
+init_csv() {
+  if [ -f "$OUTFILE" ]; then
     CURRENT_HEADER=$(head -n 1 "$OUTFILE")
     if [ "$CURRENT_HEADER" != "$EXPECTED_HEADER" ]; then
-        BACKUP="${OUTFILE}.bak.$(date +%Y%m%d_%H%M%S)"
-        echo "[WARN] CSV cũ khác schema, backup sang: $BACKUP"
-        mv "$OUTFILE" "$BACKUP"
-        echo "$EXPECTED_HEADER" > "$OUTFILE"
+      BACKUP="${OUTFILE}.bak.$(date +%Y%m%d_%H%M%S)"
+      echo "[WARN] Old CSV schema differs. Backup to $BACKUP"
+      mv "$OUTFILE" "$BACKUP"
+      echo "$EXPECTED_HEADER" > "$OUTFILE"
     fi
-else
+  else
     echo "$EXPECTED_HEADER" > "$OUTFILE"
-fi
+  fi
+}
 
-# ============================================================
-# MAIN
-# ============================================================
+run_leaf_trial() {
+  local phase=$1
+  local error_injected=$2
+  local load=$3
+  local svc r_old r_new action delta before after ts
 
-echo "======================================================"
-echo " ACTION-EFFECT DATA COLLECTION"
-echo " Target      : $TARGET"
-echo " Prometheus  : $PROMETHEUS"
-echo " Output      : $OUTFILE"
-echo " Load levels : ${LOAD_LEVELS[*]}"
-echo " Trials/load : $TRIALS_PER_LOAD"
-echo " R_MIN/R_MAX : $R_MIN / $R_MAX"
-echo "======================================================"
+  declare -A r_olds r_news actions deltas befores
 
-disable_hpa
+  check_time_budget
+  sleep "$SETTLE_BEFORE"
 
-TOTAL_TRIALS=$(( ${#LOAD_LEVELS[@]} * TRIALS_PER_LOAD ))
-TRIAL_NUM=0
+  echo "  [LEAF][$phase] choose actions..."
 
-for load in "${LOAD_LEVELS[@]}"; do
+  for svc in "${LEAF_SERVICES[@]}"; do
+    r_old=$(get_current_replicas "$svc")
+    action=$(choose_action "$r_old")
+    r_new=$(clamp_replicas $((r_old + action)))
+    delta=$((r_new - r_old))
 
+    r_olds[$svc]=$r_old
+    r_news[$svc]=$r_new
+    actions[$svc]=$action
+    deltas[$svc]=$delta
+    befores[$svc]=$(fetch_service_metrics "$svc")
+
+    echo "    $svc: R=$r_old->$r_new action=$action delta=$delta"
+  done
+
+  for svc in "${LEAF_SERVICES[@]}"; do
+    if [ "${r_news[$svc]}" -ne "${r_olds[$svc]}" ]; then
+      scale_service "$svc" "${r_news[$svc]}"
+    fi
+  done
+
+  sleep "$SETTLE_AFTER"
+
+  ts=$(date +%s)
+
+  for svc in "${LEAF_SERVICES[@]}"; do
+    after=$(fetch_service_metrics "$svc")
+    echo "${ts},${phase},${error_injected},${load},leaf,${svc},${r_olds[$svc]},${r_news[$svc]},${actions[$svc]},${deltas[$svc]},${befores[$svc]},${after}" >> "$OUTFILE"
+  done
+
+  echo "  ✓ Leaf trial done: ${#LEAF_SERVICES[@]} samples"
+}
+
+run_core_trial() {
+  local phase=$1
+  local error_injected=$2
+  local load=$3
+  local svc r_old r_new action delta before after ts
+
+  check_time_budget
+
+  svc="${CORE_SERVICES[$RANDOM % ${#CORE_SERVICES[@]}]}"
+
+  sleep "$SETTLE_BEFORE"
+
+  r_old=$(get_current_replicas "$svc")
+  action=$(choose_action "$r_old")
+  r_new=$(clamp_replicas $((r_old + action)))
+  delta=$((r_new - r_old))
+
+  before=$(fetch_service_metrics "$svc")
+
+  echo "  [CORE][$phase] $svc: R=$r_old->$r_new action=$action delta=$delta"
+
+  if [ "$r_new" -ne "$r_old" ]; then
+    scale_service "$svc" "$r_new"
+  fi
+
+  sleep "$SETTLE_AFTER"
+
+  after=$(fetch_service_metrics "$svc")
+  ts=$(date +%s)
+
+  echo "${ts},${phase},${error_injected},${load},core,${svc},${r_old},${r_new},${action},${delta},${before},${after}" >> "$OUTFILE"
+
+  echo "  ✓ Core trial done: 1 sample"
+}
+
+run_phase_for_load() {
+  local phase=$1
+  local error_injected=$2
+  local load=$3
+  local leaf_trials=$4
+  local core_trials=$5
+  local i
+
+  echo ""
+  echo "────────────────────────────────────────────"
+  echo "PHASE=$phase | ERROR=$error_injected | LOAD=$load"
+  echo "────────────────────────────────────────────"
+
+  start_locust_background "$load" 15
+  sleep 30
+
+  echo ""
+  echo "── Leaf trials: $leaf_trials × 4 services ──"
+  for ((i=1; i<=leaf_trials; i++)); do
     echo ""
-    echo "─────────────────────────────────────────────────────"
-    echo " LOAD LEVEL: $load users"
-    echo "─────────────────────────────────────────────────────"
+    echo "[$(date +%H:%M:%S)] Leaf trial $i/$leaf_trials"
+    run_leaf_trial "$phase" "$error_injected" "$load"
+  done
 
-    start_locust_background "$load" 10
-    sleep 30
+  echo ""
+  echo "── Core trials: $core_trials × 1 service ──"
+  for ((i=1; i<=core_trials; i++)); do
+    echo ""
+    echo "[$(date +%H:%M:%S)] Core trial $i/$core_trials"
+    run_core_trial "$phase" "$error_injected" "$load"
+  done
 
-    for ((i=1; i<=TRIALS_PER_LOAD; i++)); do
-        TRIAL_NUM=$((TRIAL_NUM + 1))
+  stop_locust
+  sleep 10
+}
 
-        echo ""
-        echo "[$(date +%H:%M:%S)] Trial $TRIAL_NUM/$TOTAL_TRIALS (load=$load)"
+print_summary() {
+  echo ""
+  echo "======================================================"
+  echo "DONE — saved to: $OUTFILE"
+  echo "======================================================"
 
-        sleep "$SETTLE_BEFORE"
+  echo ""
+  echo "Sample count by phase:"
+  cut -d, -f2 "$OUTFILE" | tail -n +2 | sort | uniq -c || true
 
-        svc="${SERVICES[$RANDOM % ${#SERVICES[@]}]}"
-        r_old=$(get_current_replicas "$svc")
+  echo ""
+  echo "Sample count by error_injected:"
+  cut -d, -f3 "$OUTFILE" | tail -n +2 | sort | uniq -c || true
 
-        action=$(choose_action "$r_old")
+  echo ""
+  echo "Sample count by load:"
+  cut -d, -f4 "$OUTFILE" | tail -n +2 | sort | uniq -c || true
 
-        r_new=$(( r_old + action ))
+  echo ""
+  echo "Sample count by group:"
+  cut -d, -f5 "$OUTFILE" | tail -n +2 | sort | uniq -c || true
 
-        if [ "$r_new" -lt "$R_MIN" ]; then
-            r_new=$R_MIN
-        fi
+  echo ""
+  echo "Sample count by service:"
+  cut -d, -f6 "$OUTFILE" | tail -n +2 | sort | uniq -c || true
 
-        if [ "$r_new" -gt "$R_MAX" ]; then
-            r_new=$R_MAX
-        fi
+  echo ""
+  echo "Sample count by effective_delta:"
+  cut -d, -f10 "$OUTFILE" | tail -n +2 | sort | uniq -c || true
 
-        effective_delta=$(( r_new - r_old ))
+  echo ""
+  echo "Non-zero error rows:"
+  awk -F',' 'NR>1 && ($13+0 > 0 || $17+0 > 0) {c++} END {print c+0}' "$OUTFILE"
+}
 
-        echo "  Service: $svc | R_old=$r_old -> R_new=$r_new (action=$action, effective_delta=$effective_delta)"
+main() {
+  echo "======================================================"
+  echo "ACTION-EFFECT FINAL COLLECTION"
+  echo "Target: $TARGET"
+  echo "Prometheus: $PROMETHEUS"
+  echo "Output: $OUTFILE"
+  echo ""
+  echo "Normal loads: ${NORMAL_LOAD_LEVELS[*]}"
+  echo "Error loads : ${ERROR_LOAD_LEVELS[*]}"
+  echo "Expected samples:"
+  echo "  Normal = ${#NORMAL_LOAD_LEVELS[@]} × ($LEAF_TRIALS_NORMAL×4 + $CORE_TRIALS_NORMAL)"
+  echo "  Error  = ${#ERROR_LOAD_LEVELS[@]} × ($LEAF_TRIALS_ERROR×4 + $CORE_TRIALS_ERROR)"
+  echo "  Total  ≈ $(( ${#NORMAL_LOAD_LEVELS[@]} * (LEAF_TRIALS_NORMAL * 4 + CORE_TRIALS_NORMAL) + ${#ERROR_LOAD_LEVELS[@]} * (LEAF_TRIALS_ERROR * 4 + CORE_TRIALS_ERROR) )) samples"
+  echo "Time budget: $MAX_RUNTIME_SECONDS seconds"
+  echo "======================================================"
 
-        before=$(fetch_service_metrics "$svc")
-        echo "  Before: cpu,rps,err,lat = $before"
+  init_csv
+  disable_error_injection
+  disable_hpa
 
-        if [ "$r_new" -ne "$r_old" ]; then
-            scale_service "$svc" "$r_new"
-        fi
+  for load in "${NORMAL_LOAD_LEVELS[@]}"; do
+    disable_error_injection
+    run_phase_for_load "normal" 0 "$load" "$LEAF_TRIALS_NORMAL" "$CORE_TRIALS_NORMAL"
+  done
 
-        sleep "$SETTLE_AFTER"
+  enable_error_injection 12
 
-        after=$(fetch_service_metrics "$svc")
-        echo "  After:  cpu,rps,err,lat = $after"
+  for load in "${ERROR_LOAD_LEVELS[@]}"; do
+    run_phase_for_load "error_injection" 1 "$load" "$LEAF_TRIALS_ERROR" "$CORE_TRIALS_ERROR"
+  done
 
-        ts=$(date +%s)
+  disable_error_injection
+  print_summary
+}
 
-        echo "${ts},${load},${svc},${r_old},${r_new},${action},${effective_delta},${before},${after}" >> "$OUTFILE"
-    done
-
-    stop_locust
-    sleep 10
-done
-
-echo ""
-echo "======================================================"
-echo " DONE — Action-effect pairs saved to: $OUTFILE"
-echo " Total trials: $TRIAL_NUM"
-echo "======================================================"
-
-echo ""
-echo "Sample count by load:"
-cut -d, -f2 "$OUTFILE" | tail -n +2 | sort | uniq -c || true
-
-echo ""
-echo "Sample count by service:"
-cut -d, -f3 "$OUTFILE" | tail -n +2 | sort | uniq -c || true
-
-echo ""
-echo "Sample count by effective_delta:"
-cut -d, -f7 "$OUTFILE" | tail -n +2 | sort | uniq -c || true
+main
