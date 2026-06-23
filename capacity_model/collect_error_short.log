@@ -1,0 +1,244 @@
+nohup: ignoring input
+======================================================
+ACTION-EFFECT ERROR-ONLY COLLECTION
+Target: http://192.168.120.185:30080
+Prometheus: http://192.168.120.185:30090
+Output: ./action_effect_data/action_effect_pairs_error_only.csv
+
+Error loads       : 260
+Fault percentages : 30 50
+Leaf trials/error : 6
+Core trials/error : 8
+Expected samples  : 64
+Time budget       : 7200 seconds
+======================================================
+[SETUP] Delete HPA...
+
+────────────────────────────────────────────
+PHASE=error_injection | ERROR=1 | LOAD=260 | FAULT=30%
+────────────────────────────────────────────
+[SETUP] Enable Istio fault injection: checkoutservice 30% 503
+  [locust] started: users=260 spawn=25 pid=2329794
+
+── Leaf trials: 6 × 4 services ──
+
+[04:02:27] Leaf trial 1/6
+  [LEAF][error_injection] choose actions...
+    adservice: R=2->3 action=1 delta=1
+    emailservice: R=2->3 action=1 delta=1
+    currencyservice: R=2->1 action=-1 delta=-1
+    shippingservice: R=2->3 action=1 delta=1
+  ✓ Leaf trial done: 4 samples
+
+[04:04:01] Leaf trial 2/6
+  [LEAF][error_injection] choose actions...
+    adservice: R=3->2 action=-1 delta=-1
+    emailservice: R=3->2 action=-1 delta=-1
+    currencyservice: R=1->2 action=1 delta=1
+    shippingservice: R=3->2 action=-1 delta=-1
+  ✓ Leaf trial done: 4 samples
+
+[04:05:34] Leaf trial 3/6
+  [LEAF][error_injection] choose actions...
+    adservice: R=2->1 action=-1 delta=-1
+    emailservice: R=2->3 action=1 delta=1
+    currencyservice: R=2->3 action=1 delta=1
+    shippingservice: R=2->1 action=-1 delta=-1
+  ✓ Leaf trial done: 4 samples
+
+[04:07:08] Leaf trial 4/6
+  [LEAF][error_injection] choose actions...
+    adservice: R=1->2 action=1 delta=1
+    emailservice: R=3->4 action=1 delta=1
+    currencyservice: R=3->4 action=1 delta=1
+    shippingservice: R=1->2 action=1 delta=1
+  ✓ Leaf trial done: 4 samples
+
+[04:08:42] Leaf trial 5/6
+  [LEAF][error_injection] choose actions...
+    adservice: R=2->3 action=1 delta=1
+    emailservice: R=4->3 action=-1 delta=-1
+    currencyservice: R=4->3 action=-1 delta=-1
+    shippingservice: R=2->1 action=-1 delta=-1
+  ✓ Leaf trial done: 4 samples
+
+[04:10:16] Leaf trial 6/6
+  [LEAF][error_injection] choose actions...
+    adservice: R=3->3 action=0 delta=0
+    emailservice: R=3->4 action=1 delta=1
+    currencyservice: R=3->4 action=1 delta=1
+    shippingservice: R=1->2 action=1 delta=1
+  ✓ Leaf trial done: 4 samples
+
+── Core trials: 8 × 1 service ──
+
+[04:11:50] Core trial 1/8
+  [CORE][error_injection] frontend: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[04:13:21] Core trial 2/8
+  [CORE][error_injection] recommendationservice: R=1->1 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[04:14:51] Core trial 3/8
+  [CORE][error_injection] paymentservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[04:16:22] Core trial 4/8
+  [CORE][error_injection] frontend: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[04:17:53] Core trial 5/8
+  [CORE][error_injection] frontend: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[04:19:24] Core trial 6/8
+  [CORE][error_injection] paymentservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[04:20:55] Core trial 7/8
+  [CORE][error_injection] frontend: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[04:22:26] Core trial 8/8
+  [CORE][error_injection] checkoutservice: R=1->1 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+────────────────────────────────────────────
+PHASE=error_injection | ERROR=1 | LOAD=260 | FAULT=50%
+────────────────────────────────────────────
+[SETUP] Enable Istio fault injection: checkoutservice 50% 503
+  [locust] started: users=260 spawn=25 pid=2350097
+
+── Leaf trials: 6 × 4 services ──
+
+[04:24:57] Leaf trial 1/6
+  [LEAF][error_injection] choose actions...
+    adservice: R=3->2 action=-1 delta=-1
+    emailservice: R=4->4 action=0 delta=0
+    currencyservice: R=4->5 action=1 delta=1
+    shippingservice: R=2->3 action=1 delta=1
+  ✓ Leaf trial done: 4 samples
+
+[04:26:31] Leaf trial 2/6
+  [LEAF][error_injection] choose actions...
+    adservice: R=2->3 action=1 delta=1
+    emailservice: R=4->3 action=-1 delta=-1
+    currencyservice: R=5->6 action=1 delta=1
+    shippingservice: R=3->4 action=1 delta=1
+  ✓ Leaf trial done: 4 samples
+
+[04:28:05] Leaf trial 3/6
+  [LEAF][error_injection] choose actions...
+    adservice: R=3->4 action=1 delta=1
+    emailservice: R=3->4 action=1 delta=1
+    currencyservice: R=6->5 action=-1 delta=-1
+    shippingservice: R=4->5 action=1 delta=1
+  ✓ Leaf trial done: 4 samples
+
+[04:29:38] Leaf trial 4/6
+  [LEAF][error_injection] choose actions...
+    adservice: R=4->5 action=1 delta=1
+    emailservice: R=4->5 action=1 delta=1
+    currencyservice: R=5->6 action=1 delta=1
+    shippingservice: R=5->5 action=0 delta=0
+  ✓ Leaf trial done: 4 samples
+
+[04:31:12] Leaf trial 5/6
+  [LEAF][error_injection] choose actions...
+    adservice: R=5->5 action=0 delta=0
+    emailservice: R=5->5 action=0 delta=0
+    currencyservice: R=6->7 action=1 delta=1
+    shippingservice: R=5->6 action=1 delta=1
+  ✓ Leaf trial done: 4 samples
+
+[04:32:45] Leaf trial 6/6
+  [LEAF][error_injection] choose actions...
+    adservice: R=5->5 action=0 delta=0
+    emailservice: R=5->4 action=-1 delta=-1
+    currencyservice: R=7->8 action=1 delta=1
+    shippingservice: R=6->5 action=-1 delta=-1
+  ✓ Leaf trial done: 4 samples
+
+── Core trials: 8 × 1 service ──
+
+[04:34:18] Core trial 1/8
+  [CORE][error_injection] checkoutservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[04:35:49] Core trial 2/8
+  [CORE][error_injection] recommendationservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[04:37:20] Core trial 3/8
+  [CORE][error_injection] frontend: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[04:38:51] Core trial 4/8
+  [CORE][error_injection] recommendationservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[04:40:22] Core trial 5/8
+  [CORE][error_injection] frontend: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[04:41:53] Core trial 6/8
+  [CORE][error_injection] recommendationservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[04:43:24] Core trial 7/8
+  [CORE][error_injection] checkoutservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[04:44:54] Core trial 8/8
+  [CORE][error_injection] checkoutservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+======================================================
+DONE — saved to: ./action_effect_data/action_effect_pairs_error_only.csv
+======================================================
+
+Sample count by phase:
+     64 error_injection
+
+Sample count by error_injected:
+     64 1
+
+Sample count by load:
+     64 260
+
+Sample count by group:
+     16 core
+     48 leaf
+
+Sample count by service:
+     12 adservice
+      4 checkoutservice
+     12 currencyservice
+     12 emailservice
+      6 frontend
+      2 paymentservice
+      4 recommendationservice
+     12 shippingservice
+
+Sample count by effective_delta:
+     16 -1
+      8 0
+     40 1
+
+Non-zero error rows:
+6
+
+Rows with err_after > 0:
+6
+
+Top non-zero err rows:
+1782188001,error_injection,1,260,core,frontend,1,2,1,1,537.6689093388442,86.96666666666667,0.011115369745702916,0.9707303370786515,592.2621502507753,86.53333333333333,0.018875192385879903,0.9743700787401576
+1782188273,error_injection,1,260,core,frontend,2,1,-1,-1,585.8069243232616,88.86666666666669,0.012378094384342526,0.934019607843137,583.1352433859536,87.73333333333333,0.01367781139424987,0.9727754677754676
+1782188364,error_injection,1,260,core,frontend,1,2,1,1,587.3025848935642,88.06666666666666,0.014761544117015019,0.9492635658914724,586.3340569093642,87.9,0.018581721441997857,0.9403603603603604
+1782188546,error_injection,1,260,core,frontend,2,1,-1,-1,490.3404028960172,88.56666666666666,0.016183665605754623,0.9568688524590165,488.193818969565,86.86666666666666,0.015732923840373097,0.9157371794871793
+1782189531,error_injection,1,260,core,frontend,1,2,1,1,503.1902476642125,87.26666666666667,0.02482811277889863,0.9400691244239628,597.4392790242629,88.6,0.024830699494010167,0.9372300469483567
+1782189713,error_injection,1,260,core,frontend,2,3,1,1,589.0733427169913,87.405827055137,0.03089244815914887,0.9534163701067618,587.7235762232901,88.36666666666666,0.026782345981338978,0.9332914572864318
+
+[CLEANUP] Stop Locust, disable fault injection, restore HPA...
+[CLEANUP] Restore HPA...
