@@ -1,0 +1,151 @@
+{
+  "csv_path": "./action_effect_data/action_effect_pairs_merged.csv",
+  "out_path": "./capacity_model_v2.pt",
+  "transition_mode": "learned_delta_cpu_lat_only",
+  "n_samples": 576,
+  "n_train": 460,
+  "n_val": 116,
+  "best_epoch": 600,
+  "best_val_loss": 0.005184198264032602,
+  "services": [
+    "adservice",
+    "cartservice",
+    "checkoutservice",
+    "currencyservice",
+    "emailservice",
+    "frontend",
+    "paymentservice",
+    "productcatalogservice",
+    "recommendationservice",
+    "shippingservice"
+  ],
+  "feature_names": [
+    "r_old_norm",
+    "r_new_norm",
+    "action",
+    "effective_delta",
+    "cpu_before_norm",
+    "rps_before_norm",
+    "err_before_norm",
+    "lat_before_norm",
+    "load_norm",
+    "svc_adservice",
+    "svc_cartservice",
+    "svc_checkoutservice",
+    "svc_currencyservice",
+    "svc_emailservice",
+    "svc_frontend",
+    "svc_paymentservice",
+    "svc_productcatalogservice",
+    "svc_recommendationservice",
+    "svc_shippingservice"
+  ],
+  "target_names": [
+    "delta_cpu_norm",
+    "delta_lat_norm"
+  ],
+  "after_target_names": [
+    "cpu_after_norm",
+    "lat_after_norm"
+  ],
+  "rule_outputs": {
+    "rps": "persistence",
+    "err": "persistence_or_external_rule"
+  },
+  "metrics": {
+    "delta": {
+      "persistence_zero": {
+        "cpu": {
+          "mae_delta_norm": 0.015664057806134224,
+          "rmse_delta_norm": 0.02951039932668209,
+          "r2_delta_norm": -0.009052157402038574
+        },
+        "lat": {
+          "mae_delta_norm": 0.003323638578876853,
+          "rmse_delta_norm": 0.006884362082928419,
+          "r2_delta_norm": -0.0006558895111083984
+        }
+      },
+      "handcrafted": {
+        "cpu": {
+          "mae_delta_norm": 0.03563917055726051,
+          "rmse_delta_norm": 0.07081149518489838,
+          "r2_delta_norm": -4.809930801391602
+        },
+        "lat": {
+          "mae_delta_norm": 0.008465596474707127,
+          "rmse_delta_norm": 0.025171658024191856,
+          "r2_delta_norm": -12.377684593200684
+        }
+      },
+      "learned_cpu_lat": {
+        "cpu": {
+          "mae_delta_norm": 0.014405212365090847,
+          "rmse_delta_norm": 0.026119548827409744,
+          "r2_delta_norm": 0.20951294898986816
+        },
+        "lat": {
+          "mae_delta_norm": 0.003999123815447092,
+          "rmse_delta_norm": 0.007844703271985054,
+          "r2_delta_norm": -0.2993028163909912
+        }
+      }
+    },
+    "after_state": {
+      "persistence": {
+        "cpu": {
+          "mae_raw": 23.49608612060547,
+          "rmse_raw": 44.26559829711914,
+          "r2_raw": 0.9628417491912842,
+          "mae_norm": 0.015664057806134224,
+          "rmse_norm": 0.02951039932668209,
+          "r2_norm": 0.9628417491912842
+        },
+        "lat": {
+          "mae_raw": 0.003323638578876853,
+          "rmse_raw": 0.006884362082928419,
+          "r2_raw": 0.9991007447242737,
+          "mae_norm": 0.003323638578876853,
+          "rmse_norm": 0.006884362082928419,
+          "r2_norm": 0.9991007447242737
+        }
+      },
+      "handcrafted": {
+        "cpu": {
+          "mae_raw": 53.45876693725586,
+          "rmse_raw": 106.21725463867188,
+          "r2_raw": 0.7860497236251831,
+          "mae_norm": 0.03563917055726051,
+          "rmse_norm": 0.07081149518489838,
+          "r2_norm": 0.7860497236251831
+        },
+        "lat": {
+          "mae_raw": 0.008465596474707127,
+          "rmse_raw": 0.025171658024191856,
+          "r2_raw": 0.9879782199859619,
+          "mae_norm": 0.008465596474707127,
+          "rmse_norm": 0.025171658024191856,
+          "r2_norm": 0.9879782199859619
+        }
+      },
+      "learned_cpu_lat": {
+        "cpu": {
+          "mae_raw": 21.607816696166992,
+          "rmse_raw": 39.179325103759766,
+          "r2_raw": 0.9708904027938843,
+          "mae_norm": 0.014405212365090847,
+          "rmse_norm": 0.026119550690054893,
+          "r2_norm": 0.9708903431892395
+        },
+        "lat": {
+          "mae_raw": 0.0039001903496682644,
+          "rmse_raw": 0.007491081487387419,
+          "r2_raw": 0.9989352822303772,
+          "mae_norm": 0.0039001903496682644,
+          "rmse_norm": 0.007491081487387419,
+          "r2_norm": 0.9989352822303772
+        }
+      }
+    }
+  }
+}

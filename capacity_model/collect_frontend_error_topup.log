@@ -1,0 +1,209 @@
+nohup: ignoring input
+======================================================
+ACTION-EFFECT FRONTEND ERROR TOP-UP COLLECTION
+Target: http://192.168.120.185:30080
+Prometheus: http://192.168.120.185:30090
+Output: ./action_effect_data/action_effect_pairs_frontend_error_topup.csv
+
+Error loads       : 260
+Fault percentages : 50 70
+Core trials/error : 18
+Expected samples  : 36
+Time budget       : 5400 seconds
+======================================================
+[SETUP] Delete HPA...
+
+────────────────────────────────────────────
+PHASE=error_injection | ERROR=1 | LOAD=260 | FAULT=50%
+────────────────────────────────────────────
+[SETUP] Enable Istio fault injection: checkoutservice 50% 503
+  [locust] started: users=260 spawn=25 pid=2602687
+
+── Core error top-up trials: 18 × 1 service ──
+
+[09:41:07] Core trial 1/18
+  [CORE][error_injection] frontend: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[09:42:43] Core trial 2/18
+  [CORE][error_injection] frontend: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[09:44:18] Core trial 3/18
+  [CORE][error_injection] frontend: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[09:45:54] Core trial 4/18
+  [CORE][error_injection] frontend: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[09:47:30] Core trial 5/18
+  [CORE][error_injection] frontend: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[09:49:06] Core trial 6/18
+  [CORE][error_injection] frontend: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[09:50:42] Core trial 7/18
+  [CORE][error_injection] recommendationservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[09:52:18] Core trial 8/18
+  [CORE][error_injection] frontend: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[09:53:54] Core trial 9/18
+  [CORE][error_injection] frontend: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[09:55:30] Core trial 10/18
+  [CORE][error_injection] frontend: R=5->5 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[09:57:05] Core trial 11/18
+  [CORE][error_injection] frontend: R=5->4 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[09:58:41] Core trial 12/18
+  [CORE][error_injection] frontend: R=4->4 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[10:00:17] Core trial 13/18
+  [CORE][error_injection] frontend: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[10:01:53] Core trial 14/18
+  [CORE][error_injection] frontend: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[10:03:29] Core trial 15/18
+  [CORE][error_injection] frontend: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[10:05:05] Core trial 16/18
+  [CORE][error_injection] frontend: R=5->4 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[10:06:41] Core trial 17/18
+  [CORE][error_injection] frontend: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[10:08:16] Core trial 18/18
+  [CORE][error_injection] frontend: R=5->5 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+────────────────────────────────────────────
+PHASE=error_injection | ERROR=1 | LOAD=260 | FAULT=70%
+────────────────────────────────────────────
+[SETUP] Enable Istio fault injection: checkoutservice 70% 503
+  [locust] started: users=260 spawn=25 pid=2630839
+
+── Core error top-up trials: 18 × 1 service ──
+
+[10:10:50] Core trial 1/18
+  [CORE][error_injection] frontend: R=5->6 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[10:12:26] Core trial 2/18
+  [CORE][error_injection] frontend: R=6->7 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[10:14:02] Core trial 3/18
+  [CORE][error_injection] frontend: R=7->7 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[10:15:37] Core trial 4/18
+  [CORE][error_injection] recommendationservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[10:17:13] Core trial 5/18
+  [CORE][error_injection] frontend: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[10:18:49] Core trial 6/18
+  [CORE][error_injection] frontend: R=8->9 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[10:20:25] Core trial 7/18
+  [CORE][error_injection] frontend: R=9->10 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[10:22:01] Core trial 8/18
+  [CORE][error_injection] checkoutservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[10:23:37] Core trial 9/18
+  [CORE][error_injection] frontend: R=10->9 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[10:25:13] Core trial 10/18
+  [CORE][error_injection] frontend: R=9->8 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[10:26:49] Core trial 11/18
+  [CORE][error_injection] checkoutservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[10:28:25] Core trial 12/18
+  [CORE][error_injection] frontend: R=8->7 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[10:30:01] Core trial 13/18
+  [CORE][error_injection] checkoutservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[10:31:37] Core trial 14/18
+  [CORE][error_injection] frontend: R=7->6 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[10:33:12] Core trial 15/18
+  [CORE][error_injection] frontend: R=6->5 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[10:34:48] Core trial 16/18
+  [CORE][error_injection] frontend: R=5->4 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[10:36:24] Core trial 17/18
+  [CORE][error_injection] frontend: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[10:38:00] Core trial 18/18
+  [CORE][error_injection] frontend: R=5->6 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+======================================================
+DONE — saved to: ./action_effect_data/action_effect_pairs_frontend_error_topup.csv
+======================================================
+
+Sample count by service:
+      3 checkoutservice
+     31 frontend
+      2 recommendationservice
+
+Sample count by effective_delta:
+     12 -1
+      5 0
+     19 1
+
+Non-zero error rows:
+31
+
+Rows with err_after > 0:
+31
+
+Top non-zero err rows:
+1782207763,error_injection,1,260,core,frontend,1,2,1,1,504.629082584646,84.6,0.025610716797351656,0.9999310710498409,560.9380428256079,85.7,0.028004667117798514,1.741764705882349
+1782207858,error_injection,1,260,core,frontend,2,1,-1,-1,553.3717515884074,86.93333333333334,0.02799079722403224,1.5757142857142772,514.2852325351917,85.9,0.025223127374197195,0.9783305369127515
+1782207954,error_injection,1,260,core,frontend,1,2,1,1,549.0325659352435,87.73333333333333,0.026595744377708085,0.9873658872077028,549.4043676458275,86.23333333333333,0.024739079728576578,0.9699308755760366
+1782208050,error_injection,1,260,core,frontend,2,3,1,1,459.66554111336364,86.66666666666667,0.021923076670118346,0.9854356568364612,496.8327017143819,86.23333333333333,0.022419791004022523,0.9856587202007531
+1782208146,error_injection,1,260,core,frontend,3,4,1,1,552.959711726709,85.26666666666667,0.022673963768483615,0.9794627383015599,460.76414688343124,86.46666666666667,0.02274479541929689,0.9836272040302265
+1782208242,error_injection,1,260,core,frontend,4,3,-1,-1,554.3980683295603,86.7,0.03460207572546625,0.9693661971830984,554.6532905376281,85.8,0.0291375287979309,0.9847893432465922
+1782208434,error_injection,1,260,core,frontend,3,4,1,1,509.17145751879866,87.73333333333333,0.027682972760474933,0.9721808510638296,560.8642229209867,87.611681557541,0.024733637465026565,0.9702272727272725
+1782208530,error_injection,1,260,core,frontend,4,5,1,1,558.4631015124772,85.1,0.02154328215969508,0.9733954451345755,410.58523752826744,86.06666666666665,0.022075909890674945,0.9866469893742619
+1782208625,error_injection,1,260,core,frontend,5,5,0,0,382.08534519003615,85.36666666666666,0.028114017632401202,0.9779576271186441,567.3394698509697,87.73333333333333,0.024316109145333102,0.9728747433264887
+1782208721,error_injection,1,260,core,frontend,5,4,-1,-1,474.3055239075183,86.7,0.02383698549976564,0.9818189655172412,466.83454667165955,88.93333333333332,0.02211394277982823,0.9789314194577352
+
+[CLEANUP] Stop Locust, disable fault injection, restore HPA...
+[CLEANUP] Restore HPA...
