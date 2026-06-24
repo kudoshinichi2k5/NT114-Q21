@@ -1,0 +1,827 @@
+nohup: ignoring input
+======================================================
+ACTION-EFFECT CAPACITY TARGETED COLLECTION
+Target     : http://192.168.120.185:30080
+Prometheus : http://192.168.120.185:30090
+Output     : ./action_effect_data/action_effect_pairs_capacity_targeted.csv
+
+Loads      : 300 340 380 420
+Trials/load: 36
+Total      : 144 samples
+Faults     : disabled
+Time budget: 25200 seconds
+======================================================
+[SETUP] Delete HPA...
+
+────────────────────────────────────────────
+PHASE=targeted_capacity | ERROR=0 | LOAD=300
+────────────────────────────────────────────
+[SETUP] Set core services to 2 replicas
+  [locust] started: users=300 spawn=30 pid=3655042
+
+── Targeted core trials: 36 × 1 service ──
+
+[07:07:32] Targeted trial 1/36
+  [TARGETED] prepare frontend at R=1
+  [TARGETED] load=300 | frontend: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[07:09:48] Targeted trial 2/36
+  [TARGETED] prepare cartservice at R=3
+  [TARGETED] load=300 | cartservice: R=3->4 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[07:12:05] Targeted trial 3/36
+  [TARGETED] prepare frontend at R=1
+  [TARGETED] load=300 | frontend: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[07:14:21] Targeted trial 4/36
+  [TARGETED] prepare recommendationservice at R=2
+  [TARGETED] load=300 | recommendationservice: R=2->1 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[07:16:37] Targeted trial 5/36
+  [TARGETED] prepare productcatalogservice at R=3
+  [TARGETED] load=300 | productcatalogservice: R=3->4 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[07:18:53] Targeted trial 6/36
+  [TARGETED] prepare frontend at R=2
+  [TARGETED] load=300 | frontend: R=2->3 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[07:21:09] Targeted trial 7/36
+  [TARGETED] prepare cartservice at R=4
+  [TARGETED] load=300 | cartservice: R=4->3 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[07:23:26] Targeted trial 8/36
+  [TARGETED] prepare checkoutservice at R=3
+  [TARGETED] load=300 | checkoutservice: R=3->2 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[07:25:42] Targeted trial 9/36
+  [TARGETED] prepare cartservice at R=1
+  [TARGETED] load=300 | cartservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[07:27:58] Targeted trial 10/36
+  [TARGETED] prepare productcatalogservice at R=3
+  [TARGETED] load=300 | productcatalogservice: R=3->2 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[07:30:14] Targeted trial 11/36
+  [TARGETED] prepare cartservice at R=4
+  [TARGETED] load=300 | cartservice: R=4->3 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[07:32:30] Targeted trial 12/36
+  [TARGETED] prepare checkoutservice at R=2
+  [TARGETED] load=300 | checkoutservice: R=2->1 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[07:34:46] Targeted trial 13/36
+  [TARGETED] prepare cartservice at R=4
+  [TARGETED] load=300 | cartservice: R=4->3 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[07:37:02] Targeted trial 14/36
+  [TARGETED] prepare recommendationservice at R=1
+  [TARGETED] load=300 | recommendationservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[07:39:18] Targeted trial 15/36
+  [TARGETED] prepare checkoutservice at R=3
+  [TARGETED] load=300 | checkoutservice: R=3->4 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[07:41:34] Targeted trial 16/36
+  [TARGETED] prepare cartservice at R=4
+  [TARGETED] load=300 | cartservice: R=4->3 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[07:43:51] Targeted trial 17/36
+  [TARGETED] prepare checkoutservice at R=2
+  [TARGETED] load=300 | checkoutservice: R=2->1 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[07:46:07] Targeted trial 18/36
+  [TARGETED] prepare checkoutservice at R=2
+  [TARGETED] load=300 | checkoutservice: R=2->3 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[07:48:23] Targeted trial 19/36
+  [TARGETED] prepare cartservice at R=2
+  [TARGETED] load=300 | cartservice: R=2->2 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[07:50:38] Targeted trial 20/36
+  [TARGETED] prepare cartservice at R=1
+  [TARGETED] load=300 | cartservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[07:52:55] Targeted trial 21/36
+  [TARGETED] prepare recommendationservice at R=3
+  [TARGETED] load=300 | recommendationservice: R=3->4 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[07:55:11] Targeted trial 22/36
+  [TARGETED] prepare recommendationservice at R=2
+  [TARGETED] load=300 | recommendationservice: R=2->1 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[07:57:27] Targeted trial 23/36
+  [TARGETED] prepare cartservice at R=2
+  [TARGETED] load=300 | cartservice: R=2->3 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[07:59:43] Targeted trial 24/36
+  [TARGETED] prepare cartservice at R=1
+  [TARGETED] load=300 | cartservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[08:01:59] Targeted trial 25/36
+  [TARGETED] prepare checkoutservice at R=3
+  [TARGETED] load=300 | checkoutservice: R=3->2 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[08:04:15] Targeted trial 26/36
+  [TARGETED] prepare paymentservice at R=4
+  [TARGETED] load=300 | paymentservice: R=4->4 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[08:06:31] Targeted trial 27/36
+  [TARGETED] prepare frontend at R=3
+  [TARGETED] load=300 | frontend: R=3->2 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[08:08:47] Targeted trial 28/36
+  [TARGETED] prepare paymentservice at R=3
+  [TARGETED] load=300 | paymentservice: R=3->4 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[08:11:03] Targeted trial 29/36
+  [TARGETED] prepare checkoutservice at R=3
+  [TARGETED] load=300 | checkoutservice: R=3->2 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[08:13:20] Targeted trial 30/36
+  [TARGETED] prepare productcatalogservice at R=4
+  [TARGETED] load=300 | productcatalogservice: R=4->4 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[08:15:35] Targeted trial 31/36
+  [TARGETED] prepare checkoutservice at R=1
+  [TARGETED] load=300 | checkoutservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[08:17:51] Targeted trial 32/36
+  [TARGETED] prepare frontend at R=1
+  [TARGETED] load=300 | frontend: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[08:20:08] Targeted trial 33/36
+  [TARGETED] prepare frontend at R=2
+  [TARGETED] load=300 | frontend: R=2->1 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[08:22:24] Targeted trial 34/36
+  [TARGETED] prepare paymentservice at R=3
+  [TARGETED] load=300 | paymentservice: R=3->4 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[08:24:40] Targeted trial 35/36
+  [TARGETED] prepare frontend at R=1
+  [TARGETED] load=300 | frontend: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[08:26:56] Targeted trial 36/36
+  [TARGETED] prepare paymentservice at R=4
+  [TARGETED] load=300 | paymentservice: R=4->5 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+────────────────────────────────────────────
+PHASE=targeted_capacity | ERROR=0 | LOAD=340
+────────────────────────────────────────────
+[SETUP] Set core services to 2 replicas
+  [locust] started: users=340 spawn=30 pid=3727155
+
+── Targeted core trials: 36 × 1 service ──
+
+[08:31:18] Targeted trial 1/36
+  [TARGETED] prepare productcatalogservice at R=3
+  [TARGETED] load=340 | productcatalogservice: R=3->2 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[08:33:34] Targeted trial 2/36
+  [TARGETED] prepare productcatalogservice at R=1
+  [TARGETED] load=340 | productcatalogservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[08:35:51] Targeted trial 3/36
+  [TARGETED] prepare frontend at R=3
+  [TARGETED] load=340 | frontend: R=3->4 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[08:38:07] Targeted trial 4/36
+  [TARGETED] prepare recommendationservice at R=2
+  [TARGETED] load=340 | recommendationservice: R=2->2 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[08:40:23] Targeted trial 5/36
+  [TARGETED] prepare checkoutservice at R=1
+  [TARGETED] load=340 | checkoutservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[08:42:40] Targeted trial 6/36
+  [TARGETED] prepare frontend at R=2
+  [TARGETED] load=340 | frontend: R=2->3 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[08:44:56] Targeted trial 7/36
+  [TARGETED] prepare frontend at R=4
+  [TARGETED] load=340 | frontend: R=4->5 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[08:47:12] Targeted trial 8/36
+  [TARGETED] prepare paymentservice at R=1
+  [TARGETED] load=340 | paymentservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[08:49:28] Targeted trial 9/36
+  [TARGETED] prepare recommendationservice at R=2
+  [TARGETED] load=340 | recommendationservice: R=2->3 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[08:51:44] Targeted trial 10/36
+  [TARGETED] prepare cartservice at R=4
+  [TARGETED] load=340 | cartservice: R=4->3 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[08:54:00] Targeted trial 11/36
+  [TARGETED] prepare recommendationservice at R=1
+  [TARGETED] load=340 | recommendationservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[08:56:17] Targeted trial 12/36
+  [TARGETED] prepare checkoutservice at R=4
+  [TARGETED] load=340 | checkoutservice: R=4->3 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[08:58:33] Targeted trial 13/36
+  [TARGETED] prepare recommendationservice at R=3
+  [TARGETED] load=340 | recommendationservice: R=3->2 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[09:00:49] Targeted trial 14/36
+  [TARGETED] prepare recommendationservice at R=1
+  [TARGETED] load=340 | recommendationservice: R=1->1 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[09:03:05] Targeted trial 15/36
+  [TARGETED] prepare productcatalogservice at R=3
+  [TARGETED] load=340 | productcatalogservice: R=3->2 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[09:05:21] Targeted trial 16/36
+  [TARGETED] prepare productcatalogservice at R=3
+  [TARGETED] load=340 | productcatalogservice: R=3->4 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[09:07:38] Targeted trial 17/36
+  [TARGETED] prepare checkoutservice at R=2
+  [TARGETED] load=340 | checkoutservice: R=2->1 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[09:09:54] Targeted trial 18/36
+  [TARGETED] prepare recommendationservice at R=3
+  [TARGETED] load=340 | recommendationservice: R=3->2 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[09:12:10] Targeted trial 19/36
+  [TARGETED] prepare frontend at R=4
+  [TARGETED] load=340 | frontend: R=4->5 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[09:14:26] Targeted trial 20/36
+  [TARGETED] prepare cartservice at R=4
+  [TARGETED] load=340 | cartservice: R=4->5 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[09:16:43] Targeted trial 21/36
+  [TARGETED] prepare productcatalogservice at R=4
+  [TARGETED] load=340 | productcatalogservice: R=4->3 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[09:18:59] Targeted trial 22/36
+  [TARGETED] prepare paymentservice at R=3
+  [TARGETED] load=340 | paymentservice: R=3->3 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[09:21:15] Targeted trial 23/36
+  [TARGETED] prepare cartservice at R=4
+  [TARGETED] load=340 | cartservice: R=4->4 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[09:23:31] Targeted trial 24/36
+  [TARGETED] prepare recommendationservice at R=1
+  [TARGETED] load=340 | recommendationservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[09:25:47] Targeted trial 25/36
+  [TARGETED] prepare paymentservice at R=2
+  [TARGETED] load=340 | paymentservice: R=2->1 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[09:28:03] Targeted trial 26/36
+  [TARGETED] prepare recommendationservice at R=4
+  [TARGETED] load=340 | recommendationservice: R=4->4 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[09:30:20] Targeted trial 27/36
+  [TARGETED] prepare frontend at R=4
+  [TARGETED] load=340 | frontend: R=4->4 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[09:32:36] Targeted trial 28/36
+  [TARGETED] prepare checkoutservice at R=1
+  [TARGETED] load=340 | checkoutservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[09:34:52] Targeted trial 29/36
+  [TARGETED] prepare checkoutservice at R=1
+  [TARGETED] load=340 | checkoutservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[09:37:08] Targeted trial 30/36
+  [TARGETED] prepare frontend at R=1
+  [TARGETED] load=340 | frontend: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[09:39:24] Targeted trial 31/36
+  [TARGETED] prepare recommendationservice at R=1
+  [TARGETED] load=340 | recommendationservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[09:41:40] Targeted trial 32/36
+  [TARGETED] prepare cartservice at R=4
+  [TARGETED] load=340 | cartservice: R=4->3 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[09:43:56] Targeted trial 33/36
+  [TARGETED] prepare productcatalogservice at R=3
+  [TARGETED] load=340 | productcatalogservice: R=3->2 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[09:46:12] Targeted trial 34/36
+  [TARGETED] prepare checkoutservice at R=4
+  [TARGETED] load=340 | checkoutservice: R=4->3 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[09:48:28] Targeted trial 35/36
+  [TARGETED] prepare cartservice at R=1
+  [TARGETED] load=340 | cartservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[09:50:44] Targeted trial 36/36
+  [TARGETED] prepare cartservice at R=3
+  [TARGETED] load=340 | cartservice: R=3->4 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+────────────────────────────────────────────
+PHASE=targeted_capacity | ERROR=0 | LOAD=380
+────────────────────────────────────────────
+[SETUP] Set core services to 2 replicas
+  [locust] started: users=380 spawn=30 pid=3799502
+
+── Targeted core trials: 36 × 1 service ──
+
+[09:55:07] Targeted trial 1/36
+  [TARGETED] prepare frontend at R=3
+  [TARGETED] load=380 | frontend: R=3->4 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[09:57:23] Targeted trial 2/36
+  [TARGETED] prepare recommendationservice at R=4
+  [TARGETED] load=380 | recommendationservice: R=4->5 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[09:59:39] Targeted trial 3/36
+  [TARGETED] prepare frontend at R=5
+  [TARGETED] load=380 | frontend: R=5->6 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[10:01:55] Targeted trial 4/36
+  [TARGETED] prepare recommendationservice at R=4
+  [TARGETED] load=380 | recommendationservice: R=4->4 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[10:04:11] Targeted trial 5/36
+  [TARGETED] prepare checkoutservice at R=5
+  [TARGETED] load=380 | checkoutservice: R=5->5 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[10:06:27] Targeted trial 6/36
+  [TARGETED] prepare productcatalogservice at R=4
+  [TARGETED] load=380 | productcatalogservice: R=4->3 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[10:08:44] Targeted trial 7/36
+  [TARGETED] prepare cartservice at R=2
+  [TARGETED] load=380 | cartservice: R=2->3 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[10:11:00] Targeted trial 8/36
+  [TARGETED] prepare frontend at R=1
+  [TARGETED] load=380 | frontend: R=1->1 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[10:13:16] Targeted trial 9/36
+  [TARGETED] prepare checkoutservice at R=1
+  [TARGETED] load=380 | checkoutservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[10:15:32] Targeted trial 10/36
+  [TARGETED] prepare frontend at R=2
+  [TARGETED] load=380 | frontend: R=2->1 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[10:17:49] Targeted trial 11/36
+  [TARGETED] prepare checkoutservice at R=2
+  [TARGETED] load=380 | checkoutservice: R=2->1 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[10:20:05] Targeted trial 12/36
+  [TARGETED] prepare cartservice at R=2
+  [TARGETED] load=380 | cartservice: R=2->3 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[10:22:21] Targeted trial 13/36
+  [TARGETED] prepare checkoutservice at R=3
+  [TARGETED] load=380 | checkoutservice: R=3->4 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[10:24:37] Targeted trial 14/36
+  [TARGETED] prepare checkoutservice at R=1
+  [TARGETED] load=380 | checkoutservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[10:26:53] Targeted trial 15/36
+  [TARGETED] prepare checkoutservice at R=1
+  [TARGETED] load=380 | checkoutservice: R=1->1 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[10:29:09] Targeted trial 16/36
+  [TARGETED] prepare frontend at R=4
+  [TARGETED] load=380 | frontend: R=4->4 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[10:31:25] Targeted trial 17/36
+  [TARGETED] prepare recommendationservice at R=5
+  [TARGETED] load=380 | recommendationservice: R=5->4 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[10:33:41] Targeted trial 18/36
+  [TARGETED] prepare frontend at R=4
+  [TARGETED] load=380 | frontend: R=4->5 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[10:35:57] Targeted trial 19/36
+  [TARGETED] prepare frontend at R=1
+  [TARGETED] load=380 | frontend: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[10:38:13] Targeted trial 20/36
+  [TARGETED] prepare recommendationservice at R=2
+  [TARGETED] load=380 | recommendationservice: R=2->1 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[10:40:30] Targeted trial 21/36
+  [TARGETED] prepare frontend at R=2
+  [TARGETED] load=380 | frontend: R=2->1 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[10:42:46] Targeted trial 22/36
+  [TARGETED] prepare checkoutservice at R=3
+  [TARGETED] load=380 | checkoutservice: R=3->4 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[10:45:02] Targeted trial 23/36
+  [TARGETED] prepare frontend at R=1
+  [TARGETED] load=380 | frontend: R=1->1 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[10:47:18] Targeted trial 24/36
+  [TARGETED] prepare recommendationservice at R=3
+  [TARGETED] load=380 | recommendationservice: R=3->2 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[10:49:34] Targeted trial 25/36
+  [TARGETED] prepare cartservice at R=4
+  [TARGETED] load=380 | cartservice: R=4->5 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[10:51:50] Targeted trial 26/36
+  [TARGETED] prepare checkoutservice at R=1
+  [TARGETED] load=380 | checkoutservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[10:54:06] Targeted trial 27/36
+  [TARGETED] prepare productcatalogservice at R=3
+  [TARGETED] load=380 | productcatalogservice: R=3->3 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[10:56:21] Targeted trial 28/36
+  [TARGETED] prepare frontend at R=3
+  [TARGETED] load=380 | frontend: R=3->2 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[10:58:37] Targeted trial 29/36
+  [TARGETED] prepare cartservice at R=5
+  [TARGETED] load=380 | cartservice: R=5->4 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[11:00:53] Targeted trial 30/36
+  [TARGETED] prepare checkoutservice at R=1
+  [TARGETED] load=380 | checkoutservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[11:03:09] Targeted trial 31/36
+  [TARGETED] prepare cartservice at R=1
+  [TARGETED] load=380 | cartservice: R=1->1 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[11:05:25] Targeted trial 32/36
+  [TARGETED] prepare frontend at R=5
+  [TARGETED] load=380 | frontend: R=5->6 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[11:07:41] Targeted trial 33/36
+  [TARGETED] prepare productcatalogservice at R=2
+  [TARGETED] load=380 | productcatalogservice: R=2->1 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[11:09:57] Targeted trial 34/36
+  [TARGETED] prepare cartservice at R=5
+  [TARGETED] load=380 | cartservice: R=5->5 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[11:12:12] Targeted trial 35/36
+  [TARGETED] prepare cartservice at R=3
+  [TARGETED] load=380 | cartservice: R=3->3 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[11:14:28] Targeted trial 36/36
+  [TARGETED] prepare recommendationservice at R=4
+  [TARGETED] load=380 | recommendationservice: R=4->4 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+────────────────────────────────────────────
+PHASE=targeted_capacity | ERROR=0 | LOAD=420
+────────────────────────────────────────────
+[SETUP] Set core services to 2 replicas
+  [locust] started: users=420 spawn=30 pid=3870251
+
+── Targeted core trials: 36 × 1 service ──
+
+[11:18:50] Targeted trial 1/36
+  [TARGETED] prepare checkoutservice at R=1
+  [TARGETED] load=420 | checkoutservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[11:21:06] Targeted trial 2/36
+  [TARGETED] prepare checkoutservice at R=5
+  [TARGETED] load=420 | checkoutservice: R=5->5 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[11:23:21] Targeted trial 3/36
+  [TARGETED] prepare checkoutservice at R=1
+  [TARGETED] load=420 | checkoutservice: R=1->1 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[11:25:37] Targeted trial 4/36
+  [TARGETED] prepare cartservice at R=1
+  [TARGETED] load=420 | cartservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[11:27:53] Targeted trial 5/36
+  [TARGETED] prepare productcatalogservice at R=6
+  [TARGETED] load=420 | productcatalogservice: R=6->6 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[11:30:09] Targeted trial 6/36
+  [TARGETED] prepare cartservice at R=5
+  [TARGETED] load=420 | cartservice: R=5->5 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[11:32:25] Targeted trial 7/36
+  [TARGETED] prepare cartservice at R=5
+  [TARGETED] load=420 | cartservice: R=5->6 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[11:34:41] Targeted trial 8/36
+  [TARGETED] prepare frontend at R=1
+  [TARGETED] load=420 | frontend: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[11:36:57] Targeted trial 9/36
+  [TARGETED] prepare cartservice at R=6
+  [TARGETED] load=420 | cartservice: R=6->6 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[11:39:13] Targeted trial 10/36
+  [TARGETED] prepare frontend at R=6
+  [TARGETED] load=420 | frontend: R=6->6 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[11:41:29] Targeted trial 11/36
+  [TARGETED] prepare frontend at R=4
+  [TARGETED] load=420 | frontend: R=4->5 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[11:43:45] Targeted trial 12/36
+  [TARGETED] prepare recommendationservice at R=1
+  [TARGETED] load=420 | recommendationservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[11:46:01] Targeted trial 13/36
+  [TARGETED] prepare paymentservice at R=4
+  [TARGETED] load=420 | paymentservice: R=4->3 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[11:48:17] Targeted trial 14/36
+  [TARGETED] prepare productcatalogservice at R=1
+  [TARGETED] load=420 | productcatalogservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[11:50:33] Targeted trial 15/36
+  [TARGETED] prepare recommendationservice at R=3
+  [TARGETED] load=420 | recommendationservice: R=3->2 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[11:52:49] Targeted trial 16/36
+  [TARGETED] prepare checkoutservice at R=2
+  [TARGETED] load=420 | checkoutservice: R=2->3 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[11:55:04] Targeted trial 17/36
+  [TARGETED] prepare paymentservice at R=5
+  [TARGETED] load=420 | paymentservice: R=5->6 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[11:57:20] Targeted trial 18/36
+  [TARGETED] prepare productcatalogservice at R=5
+  [TARGETED] load=420 | productcatalogservice: R=5->4 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[11:59:36] Targeted trial 19/36
+  [TARGETED] prepare frontend at R=2
+  [TARGETED] load=420 | frontend: R=2->2 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[12:01:52] Targeted trial 20/36
+  [TARGETED] prepare frontend at R=1
+  [TARGETED] load=420 | frontend: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[12:04:08] Targeted trial 21/36
+  [TARGETED] prepare productcatalogservice at R=6
+  [TARGETED] load=420 | productcatalogservice: R=6->7 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[12:06:24] Targeted trial 22/36
+  [TARGETED] prepare frontend at R=3
+  [TARGETED] load=420 | frontend: R=3->4 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[12:08:40] Targeted trial 23/36
+  [TARGETED] prepare cartservice at R=6
+  [TARGETED] load=420 | cartservice: R=6->5 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[12:10:56] Targeted trial 24/36
+  [TARGETED] prepare cartservice at R=6
+  [TARGETED] load=420 | cartservice: R=6->7 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[12:13:12] Targeted trial 25/36
+  [TARGETED] prepare cartservice at R=6
+  [TARGETED] load=420 | cartservice: R=6->5 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[12:15:28] Targeted trial 26/36
+  [TARGETED] prepare checkoutservice at R=5
+  [TARGETED] load=420 | checkoutservice: R=5->4 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[12:17:44] Targeted trial 27/36
+  [TARGETED] prepare productcatalogservice at R=2
+  [TARGETED] load=420 | productcatalogservice: R=2->3 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[12:20:00] Targeted trial 28/36
+  [TARGETED] prepare frontend at R=2
+  [TARGETED] load=420 | frontend: R=2->3 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[12:22:16] Targeted trial 29/36
+  [TARGETED] prepare frontend at R=2
+  [TARGETED] load=420 | frontend: R=2->3 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[12:24:32] Targeted trial 30/36
+  [TARGETED] prepare cartservice at R=1
+  [TARGETED] load=420 | cartservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[12:26:48] Targeted trial 31/36
+  [TARGETED] prepare productcatalogservice at R=2
+  [TARGETED] load=420 | productcatalogservice: R=2->1 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[12:29:04] Targeted trial 32/36
+  [TARGETED] prepare frontend at R=4
+  [TARGETED] load=420 | frontend: R=4->4 action=0 delta=0
+  ✓ Targeted trial done: 1 sample
+
+[12:31:19] Targeted trial 33/36
+  [TARGETED] prepare checkoutservice at R=1
+  [TARGETED] load=420 | checkoutservice: R=1->2 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[12:33:35] Targeted trial 34/36
+  [TARGETED] prepare cartservice at R=3
+  [TARGETED] load=420 | cartservice: R=3->4 action=1 delta=1
+  ✓ Targeted trial done: 1 sample
+
+[12:35:51] Targeted trial 35/36
+  [TARGETED] prepare checkoutservice at R=2
+  [TARGETED] load=420 | checkoutservice: R=2->1 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+[12:38:07] Targeted trial 36/36
+  [TARGETED] prepare cartservice at R=5
+  [TARGETED] load=420 | cartservice: R=5->4 action=-1 delta=-1
+  ✓ Targeted trial done: 1 sample
+
+======================================================
+DONE — saved to: ./action_effect_data/action_effect_pairs_capacity_targeted.csv
+======================================================
+
+Sample count by phase:
+    144 targeted_capacity
+
+Sample count by error_injected:
+    144 0
+
+Sample count by load:
+     36 300
+     36 340
+     36 380
+     36 420
+
+Sample count by service:
+     33 cartservice
+     30 checkoutservice
+     33 frontend
+      9 paymentservice
+     18 productcatalogservice
+     21 recommendationservice
+
+Sample count by effective_delta:
+     45 -1
+     28 0
+     71 1
+
+Non-zero error rows:
+0
+
+High latency rows lat_before/lat_after > 0.10:
+63
+
+Scale-up samples:
+71
+
+Scale-down samples:
+45
+
+Hold samples:
+28
+
+Top high latency rows:
+1782284988,targeted_capacity,0,300,core,frontend,1,2,1,1,536.6669322477121,92.13333333333334,0.0,2.4061312217194573,516.5282436327943,94.17294486299086,0.0,2.372994011976047
+1782285261,targeted_capacity,0,300,core,frontend,1,2,1,1,599.2954632124803,93.45420610585256,0.0,2.3945063291139244,598.9109197888804,93.12712485834277,0.0,2.405957683741649
+1782285669,targeted_capacity,0,300,core,frontend,2,3,1,1,612.1644689374542,93.3,0.0,2.314845814977974,609.9984848982009,94.66666666666666,0.0,2.3378867924528306
+1782285942,targeted_capacity,0,300,core,checkoutservice,3,2,-1,-1,80.14629762469576,9.766666666666666,0,0.1885,81.40468835030693,10.869565995638602,0,0.12659193216618947
+1782286486,targeted_capacity,0,300,core,checkoutservice,2,1,-1,-1,56.51643642257179,9.8,0,0.21584615384615394,66.65590996047189,10.066666666666666,0,0.17725000000000007
+1782286894,targeted_capacity,0,300,core,checkoutservice,3,4,1,1,62.87314532905615,9.1,0,0.18350000000000033,55.31675994630471,9.733333333333333,0,0.21045454545454512
+1782287167,targeted_capacity,0,300,core,checkoutservice,2,1,-1,-1,71.34300721364627,10.7,0,0.21112499999999984,72.25282325513147,10.166666666666668,0,0.19375
+1782287303,targeted_capacity,0,300,core,checkoutservice,2,3,1,1,64.73378565998425,9.366666666666667,0,0.21127272727272722,79.6663960829931,10.866666666666667,0,0.21226923076923077
+1782288255,targeted_capacity,0,300,core,checkoutservice,3,2,-1,-1,76.48048529823126,10.766666666666667,0,0.09964285714285714,61.09116340599731,10.233357845180908,0,0.20800061814997636
+1782288527,targeted_capacity,0,300,core,frontend,3,2,-1,-1,621.1535944781897,95.38728169577391,0.0,2.0328804347826113,473.21781289190034,95.96666666666667,0.0,2.095280373831775
+1782288800,targeted_capacity,0,300,core,checkoutservice,3,2,-1,-1,70.09508127862397,9.633333333333333,0,0.09969127516778523,65.91542364080543,9.133333333333333,0,0.20770000000000033
+1782289071,targeted_capacity,0,300,core,checkoutservice,1,2,1,1,64.68850320728671,10.468230259713309,0,0.19666638699353273,64.06474294569355,10.066666666666666,0,0.13562500000000122
+
+[CLEANUP] Stop Locust, disable faults, restore HPA...
+[CLEANUP] Restore HPA...
