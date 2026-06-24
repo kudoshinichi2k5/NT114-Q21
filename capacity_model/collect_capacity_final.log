@@ -1,0 +1,1564 @@
+nohup: ignoring input
+======================================================
+ACTION-EFFECT CAPACITY FINAL COLLECTION
+Target     : http://192.168.120.185:30080
+Prometheus : http://192.168.120.185:30090
+Output     : ./action_effect_data/action_effect_pairs_capacity_final.csv
+
+Latency loads : 220 260 300 340 380 420
+Overload loads: 300 340 380
+Error loads   : 260 300
+Error fault   : 30%
+
+Expected samples:
+  Latency  = 6 × 50
+  Overload = 3 × 40
+  Error    = 2 × 20
+  Total    ≈ 460 samples
+Time budget: 39600 seconds
+======================================================
+[SETUP] Delete HPA...
+
+────────────────────────────────────────────
+PHASE=latency_core | ERROR=0 | LOAD=220 | MODE=latency
+────────────────────────────────────────────
+  [locust] started: users=220 spawn=25 pid=2893435
+
+── Core trials: 50 × 1 service ──
+
+[15:38:38] Core trial 1/50
+  [CORE][latency_core][latency] recommendationservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[15:40:24] Core trial 2/50
+  [CORE][latency_core][latency] checkoutservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[15:42:10] Core trial 3/50
+  [CORE][latency_core][latency] cartservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[15:43:56] Core trial 4/50
+  [CORE][latency_core][latency] paymentservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[15:45:42] Core trial 5/50
+  [CORE][latency_core][latency] checkoutservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[15:47:27] Core trial 6/50
+  [CORE][latency_core][latency] cartservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[15:49:13] Core trial 7/50
+  [CORE][latency_core][latency] checkoutservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[15:50:59] Core trial 8/50
+  [CORE][latency_core][latency] cartservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[15:52:45] Core trial 9/50
+  [CORE][latency_core][latency] checkoutservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[15:54:31] Core trial 10/50
+  [CORE][latency_core][latency] recommendationservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[15:56:16] Core trial 11/50
+  [CORE][latency_core][latency] frontend: R=1->1 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[15:58:02] Core trial 12/50
+  [CORE][latency_core][latency] recommendationservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[15:59:48] Core trial 13/50
+  [CORE][latency_core][latency] productcatalogservice: R=1->1 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[16:01:33] Core trial 14/50
+  [CORE][latency_core][latency] recommendationservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[16:03:19] Core trial 15/50
+  [CORE][latency_core][latency] productcatalogservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:05:05] Core trial 16/50
+  [CORE][latency_core][latency] paymentservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[16:06:51] Core trial 17/50
+  [CORE][latency_core][latency] checkoutservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[16:08:37] Core trial 18/50
+  [CORE][latency_core][latency] recommendationservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:10:23] Core trial 19/50
+  [CORE][latency_core][latency] cartservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[16:12:09] Core trial 20/50
+  [CORE][latency_core][latency] checkoutservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:13:54] Core trial 21/50
+  [CORE][latency_core][latency] paymentservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:15:40] Core trial 22/50
+  [CORE][latency_core][latency] cartservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:17:26] Core trial 23/50
+  [CORE][latency_core][latency] frontend: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:19:12] Core trial 24/50
+  [CORE][latency_core][latency] frontend: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[16:20:57] Core trial 25/50
+  [CORE][latency_core][latency] paymentservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[16:22:43] Core trial 26/50
+  [CORE][latency_core][latency] frontend: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:24:29] Core trial 27/50
+  [CORE][latency_core][latency] productcatalogservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:26:15] Core trial 28/50
+  [CORE][latency_core][latency] productcatalogservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[16:28:00] Core trial 29/50
+  [CORE][latency_core][latency] frontend: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[16:29:46] Core trial 30/50
+  [CORE][latency_core][latency] productcatalogservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:31:32] Core trial 31/50
+  [CORE][latency_core][latency] recommendationservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[16:33:18] Core trial 32/50
+  [CORE][latency_core][latency] checkoutservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[16:35:04] Core trial 33/50
+  [CORE][latency_core][latency] checkoutservice: R=1->1 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[16:36:49] Core trial 34/50
+  [CORE][latency_core][latency] checkoutservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:38:35] Core trial 35/50
+  [CORE][latency_core][latency] paymentservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[16:40:21] Core trial 36/50
+  [CORE][latency_core][latency] checkoutservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[16:42:07] Core trial 37/50
+  [CORE][latency_core][latency] recommendationservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[16:43:53] Core trial 38/50
+  [CORE][latency_core][latency] frontend: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:45:38] Core trial 39/50
+  [CORE][latency_core][latency] frontend: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[16:47:24] Core trial 40/50
+  [CORE][latency_core][latency] frontend: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:49:10] Core trial 41/50
+  [CORE][latency_core][latency] paymentservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:50:56] Core trial 42/50
+  [CORE][latency_core][latency] productcatalogservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:52:41] Core trial 43/50
+  [CORE][latency_core][latency] cartservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:54:27] Core trial 44/50
+  [CORE][latency_core][latency] frontend: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:56:13] Core trial 45/50
+  [CORE][latency_core][latency] frontend: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[16:57:59] Core trial 46/50
+  [CORE][latency_core][latency] frontend: R=4->4 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[16:59:45] Core trial 47/50
+  [CORE][latency_core][latency] productcatalogservice: R=4->4 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[17:01:30] Core trial 48/50
+  [CORE][latency_core][latency] cartservice: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[17:03:16] Core trial 49/50
+  [CORE][latency_core][latency] productcatalogservice: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[17:05:02] Core trial 50/50
+  [CORE][latency_core][latency] recommendationservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+────────────────────────────────────────────
+PHASE=latency_core | ERROR=0 | LOAD=260 | MODE=latency
+────────────────────────────────────────────
+  [locust] started: users=260 spawn=25 pid=2969086
+
+── Core trials: 50 × 1 service ──
+
+[17:07:49] Core trial 1/50
+  [CORE][latency_core][latency] recommendationservice: R=1->1 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[17:09:35] Core trial 2/50
+  [CORE][latency_core][latency] recommendationservice: R=1->1 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[17:11:20] Core trial 3/50
+  [CORE][latency_core][latency] productcatalogservice: R=5->4 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[17:13:06] Core trial 4/50
+  [CORE][latency_core][latency] cartservice: R=5->6 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[17:14:52] Core trial 5/50
+  [CORE][latency_core][latency] paymentservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[17:16:38] Core trial 6/50
+  [CORE][latency_core][latency] cartservice: R=6->7 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[17:18:24] Core trial 7/50
+  [CORE][latency_core][latency] recommendationservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[17:20:10] Core trial 8/50
+  [CORE][latency_core][latency] checkoutservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[17:21:55] Core trial 9/50
+  [CORE][latency_core][latency] productcatalogservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[17:23:41] Core trial 10/50
+  [CORE][latency_core][latency] checkoutservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[17:25:27] Core trial 11/50
+  [CORE][latency_core][latency] frontend: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[17:27:13] Core trial 12/50
+  [CORE][latency_core][latency] recommendationservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[17:28:58] Core trial 13/50
+  [CORE][latency_core][latency] paymentservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[17:30:44] Core trial 14/50
+  [CORE][latency_core][latency] frontend: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[17:32:30] Core trial 15/50
+  [CORE][latency_core][latency] checkoutservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[17:34:16] Core trial 16/50
+  [CORE][latency_core][latency] recommendationservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[17:36:02] Core trial 17/50
+  [CORE][latency_core][latency] cartservice: R=7->7 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[17:37:47] Core trial 18/50
+  [CORE][latency_core][latency] productcatalogservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[17:39:33] Core trial 19/50
+  [CORE][latency_core][latency] paymentservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[17:41:19] Core trial 20/50
+  [CORE][latency_core][latency] frontend: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[17:43:05] Core trial 21/50
+  [CORE][latency_core][latency] productcatalogservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[17:44:50] Core trial 22/50
+  [CORE][latency_core][latency] checkoutservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[17:46:36] Core trial 23/50
+  [CORE][latency_core][latency] frontend: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[17:48:22] Core trial 24/50
+  [CORE][latency_core][latency] paymentservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[17:50:08] Core trial 25/50
+  [CORE][latency_core][latency] productcatalogservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[17:51:54] Core trial 26/50
+  [CORE][latency_core][latency] recommendationservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[17:53:40] Core trial 27/50
+  [CORE][latency_core][latency] recommendationservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[17:55:26] Core trial 28/50
+  [CORE][latency_core][latency] productcatalogservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[17:57:11] Core trial 29/50
+  [CORE][latency_core][latency] checkoutservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[17:58:57] Core trial 30/50
+  [CORE][latency_core][latency] frontend: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[18:00:43] Core trial 31/50
+  [CORE][latency_core][latency] recommendationservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[18:02:29] Core trial 32/50
+  [CORE][latency_core][latency] productcatalogservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[18:04:15] Core trial 33/50
+  [CORE][latency_core][latency] recommendationservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[18:06:01] Core trial 34/50
+  [CORE][latency_core][latency] checkoutservice: R=1->1 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[18:07:46] Core trial 35/50
+  [CORE][latency_core][latency] checkoutservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[18:09:32] Core trial 36/50
+  [CORE][latency_core][latency] recommendationservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[18:11:18] Core trial 37/50
+  [CORE][latency_core][latency] cartservice: R=7->6 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[18:13:04] Core trial 38/50
+  [CORE][latency_core][latency] recommendationservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[18:14:50] Core trial 39/50
+  [CORE][latency_core][latency] cartservice: R=6->7 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[18:16:36] Core trial 40/50
+  [CORE][latency_core][latency] recommendationservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[18:18:21] Core trial 41/50
+  [CORE][latency_core][latency] cartservice: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[18:20:07] Core trial 42/50
+  [CORE][latency_core][latency] recommendationservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[18:21:53] Core trial 43/50
+  [CORE][latency_core][latency] paymentservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[18:23:39] Core trial 44/50
+  [CORE][latency_core][latency] cartservice: R=8->7 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[18:25:25] Core trial 45/50
+  [CORE][latency_core][latency] checkoutservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[18:27:11] Core trial 46/50
+  [CORE][latency_core][latency] frontend: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[18:28:57] Core trial 47/50
+  [CORE][latency_core][latency] paymentservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[18:30:42] Core trial 48/50
+  [CORE][latency_core][latency] checkoutservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[18:32:28] Core trial 49/50
+  [CORE][latency_core][latency] cartservice: R=7->6 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[18:34:14] Core trial 50/50
+  [CORE][latency_core][latency] recommendationservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+────────────────────────────────────────────
+PHASE=latency_core | ERROR=0 | LOAD=300 | MODE=latency
+────────────────────────────────────────────
+  [locust] started: users=300 spawn=25 pid=3042854
+
+── Core trials: 50 × 1 service ──
+
+[18:37:01] Core trial 1/50
+  [CORE][latency_core][latency] recommendationservice: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[18:38:47] Core trial 2/50
+  [CORE][latency_core][latency] recommendationservice: R=5->5 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[18:40:33] Core trial 3/50
+  [CORE][latency_core][latency] cartservice: R=6->7 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[18:42:18] Core trial 4/50
+  [CORE][latency_core][latency] frontend: R=4->4 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[18:44:04] Core trial 5/50
+  [CORE][latency_core][latency] cartservice: R=7->6 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[18:45:50] Core trial 6/50
+  [CORE][latency_core][latency] productcatalogservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[18:47:36] Core trial 7/50
+  [CORE][latency_core][latency] productcatalogservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[18:49:22] Core trial 8/50
+  [CORE][latency_core][latency] recommendationservice: R=5->4 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[18:51:08] Core trial 9/50
+  [CORE][latency_core][latency] cartservice: R=6->5 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[18:52:54] Core trial 10/50
+  [CORE][latency_core][latency] recommendationservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[18:54:40] Core trial 11/50
+  [CORE][latency_core][latency] checkoutservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[18:56:26] Core trial 12/50
+  [CORE][latency_core][latency] checkoutservice: R=3->3 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[18:58:12] Core trial 13/50
+  [CORE][latency_core][latency] productcatalogservice: R=3->3 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[18:59:57] Core trial 14/50
+  [CORE][latency_core][latency] frontend: R=4->4 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[19:01:43] Core trial 15/50
+  [CORE][latency_core][latency] productcatalogservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:03:29] Core trial 16/50
+  [CORE][latency_core][latency] recommendationservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[19:05:15] Core trial 17/50
+  [CORE][latency_core][latency] frontend: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:07:01] Core trial 18/50
+  [CORE][latency_core][latency] productcatalogservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[19:08:47] Core trial 19/50
+  [CORE][latency_core][latency] paymentservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:10:33] Core trial 20/50
+  [CORE][latency_core][latency] paymentservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[19:12:18] Core trial 21/50
+  [CORE][latency_core][latency] cartservice: R=5->6 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[19:14:04] Core trial 22/50
+  [CORE][latency_core][latency] frontend: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[19:15:50] Core trial 23/50
+  [CORE][latency_core][latency] cartservice: R=6->5 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:17:36] Core trial 24/50
+  [CORE][latency_core][latency] cartservice: R=5->5 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[19:19:22] Core trial 25/50
+  [CORE][latency_core][latency] recommendationservice: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[19:21:08] Core trial 26/50
+  [CORE][latency_core][latency] productcatalogservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:22:54] Core trial 27/50
+  [CORE][latency_core][latency] productcatalogservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[19:24:40] Core trial 28/50
+  [CORE][latency_core][latency] checkoutservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[19:26:26] Core trial 29/50
+  [CORE][latency_core][latency] checkoutservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:28:12] Core trial 30/50
+  [CORE][latency_core][latency] frontend: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:29:58] Core trial 31/50
+  [CORE][latency_core][latency] frontend: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:31:44] Core trial 32/50
+  [CORE][latency_core][latency] frontend: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[19:33:30] Core trial 33/50
+  [CORE][latency_core][latency] paymentservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[19:35:16] Core trial 34/50
+  [CORE][latency_core][latency] frontend: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[19:37:02] Core trial 35/50
+  [CORE][latency_core][latency] productcatalogservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:38:47] Core trial 36/50
+  [CORE][latency_core][latency] checkoutservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[19:40:33] Core trial 37/50
+  [CORE][latency_core][latency] checkoutservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:42:20] Core trial 38/50
+  [CORE][latency_core][latency] cartservice: R=5->4 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:44:05] Core trial 39/50
+  [CORE][latency_core][latency] paymentservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:45:51] Core trial 40/50
+  [CORE][latency_core][latency] frontend: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[19:47:37] Core trial 41/50
+  [CORE][latency_core][latency] productcatalogservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:49:23] Core trial 42/50
+  [CORE][latency_core][latency] recommendationservice: R=5->6 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[19:51:09] Core trial 43/50
+  [CORE][latency_core][latency] frontend: R=5->4 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:52:55] Core trial 44/50
+  [CORE][latency_core][latency] cartservice: R=4->4 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[19:54:41] Core trial 45/50
+  [CORE][latency_core][latency] cartservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:56:27] Core trial 46/50
+  [CORE][latency_core][latency] cartservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[19:58:13] Core trial 47/50
+  [CORE][latency_core][latency] recommendationservice: R=6->6 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[19:59:58] Core trial 48/50
+  [CORE][latency_core][latency] cartservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:01:44] Core trial 49/50
+  [CORE][latency_core][latency] checkoutservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[20:03:30] Core trial 50/50
+  [CORE][latency_core][latency] recommendationservice: R=6->6 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+────────────────────────────────────────────
+PHASE=latency_core | ERROR=0 | LOAD=340 | MODE=latency
+────────────────────────────────────────────
+  [locust] started: users=340 spawn=25 pid=3116158
+
+── Core trials: 50 × 1 service ──
+
+[20:06:17] Core trial 1/50
+  [CORE][latency_core][latency] recommendationservice: R=6->5 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[20:08:03] Core trial 2/50
+  [CORE][latency_core][latency] cartservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[20:09:49] Core trial 3/50
+  [CORE][latency_core][latency] cartservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[20:11:35] Core trial 4/50
+  [CORE][latency_core][latency] paymentservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[20:13:21] Core trial 5/50
+  [CORE][latency_core][latency] recommendationservice: R=5->5 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[20:15:07] Core trial 6/50
+  [CORE][latency_core][latency] checkoutservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[20:16:53] Core trial 7/50
+  [CORE][latency_core][latency] paymentservice: R=1->1 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[20:18:39] Core trial 8/50
+  [CORE][latency_core][latency] cartservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:20:25] Core trial 9/50
+  [CORE][latency_core][latency] cartservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:22:11] Core trial 10/50
+  [CORE][latency_core][latency] checkoutservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:23:57] Core trial 11/50
+  [CORE][latency_core][latency] cartservice: R=3->3 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[20:25:42] Core trial 12/50
+  [CORE][latency_core][latency] checkoutservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:27:28] Core trial 13/50
+  [CORE][latency_core][latency] cartservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:29:14] Core trial 14/50
+  [CORE][latency_core][latency] productcatalogservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:31:00] Core trial 15/50
+  [CORE][latency_core][latency] frontend: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[20:32:46] Core trial 16/50
+  [CORE][latency_core][latency] productcatalogservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:34:32] Core trial 17/50
+  [CORE][latency_core][latency] checkoutservice: R=3->3 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[20:36:18] Core trial 18/50
+  [CORE][latency_core][latency] productcatalogservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:38:04] Core trial 19/50
+  [CORE][latency_core][latency] cartservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[20:39:50] Core trial 20/50
+  [CORE][latency_core][latency] productcatalogservice: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:41:36] Core trial 21/50
+  [CORE][latency_core][latency] productcatalogservice: R=5->5 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[20:43:21] Core trial 22/50
+  [CORE][latency_core][latency] productcatalogservice: R=5->6 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:45:07] Core trial 23/50
+  [CORE][latency_core][latency] recommendationservice: R=5->6 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:46:53] Core trial 24/50
+  [CORE][latency_core][latency] paymentservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:48:39] Core trial 25/50
+  [CORE][latency_core][latency] frontend: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:50:26] Core trial 26/50
+  [CORE][latency_core][latency] productcatalogservice: R=6->5 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[20:52:12] Core trial 27/50
+  [CORE][latency_core][latency] cartservice: R=3->3 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[20:53:57] Core trial 28/50
+  [CORE][latency_core][latency] cartservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[20:55:43] Core trial 29/50
+  [CORE][latency_core][latency] productcatalogservice: R=5->4 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[20:57:29] Core trial 30/50
+  [CORE][latency_core][latency] frontend: R=4->4 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[20:59:15] Core trial 31/50
+  [CORE][latency_core][latency] recommendationservice: R=6->6 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[21:01:01] Core trial 32/50
+  [CORE][latency_core][latency] checkoutservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[21:02:47] Core trial 33/50
+  [CORE][latency_core][latency] frontend: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[21:04:33] Core trial 34/50
+  [CORE][latency_core][latency] checkoutservice: R=4->4 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[21:06:19] Core trial 35/50
+  [CORE][latency_core][latency] recommendationservice: R=6->6 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[21:08:04] Core trial 36/50
+  [CORE][latency_core][latency] cartservice: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[21:09:50] Core trial 37/50
+  [CORE][latency_core][latency] checkoutservice: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[21:11:36] Core trial 38/50
+  [CORE][latency_core][latency] productcatalogservice: R=4->4 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[21:13:22] Core trial 39/50
+  [CORE][latency_core][latency] checkoutservice: R=5->5 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[21:15:08] Core trial 40/50
+  [CORE][latency_core][latency] cartservice: R=5->6 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[21:16:54] Core trial 41/50
+  [CORE][latency_core][latency] frontend: R=3->3 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[21:18:40] Core trial 42/50
+  [CORE][latency_core][latency] frontend: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[21:20:26] Core trial 43/50
+  [CORE][latency_core][latency] checkoutservice: R=5->4 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[21:22:12] Core trial 44/50
+  [CORE][latency_core][latency] cartservice: R=6->7 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[21:23:57] Core trial 45/50
+  [CORE][latency_core][latency] checkoutservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[21:25:43] Core trial 46/50
+  [CORE][latency_core][latency] checkoutservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[21:27:30] Core trial 47/50
+  [CORE][latency_core][latency] frontend: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[21:29:16] Core trial 48/50
+  [CORE][latency_core][latency] checkoutservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[21:31:02] Core trial 49/50
+  [CORE][latency_core][latency] cartservice: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[21:32:47] Core trial 50/50
+  [CORE][latency_core][latency] recommendationservice: R=6->6 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+────────────────────────────────────────────
+PHASE=latency_core | ERROR=0 | LOAD=380 | MODE=latency
+────────────────────────────────────────────
+  [locust] started: users=380 spawn=25 pid=3189589
+
+── Core trials: 50 × 1 service ──
+
+[21:35:34] Core trial 1/50
+  [CORE][latency_core][latency] checkoutservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[21:37:20] Core trial 2/50
+  [CORE][latency_core][latency] recommendationservice: R=6->5 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[21:39:06] Core trial 3/50
+  [CORE][latency_core][latency] cartservice: R=8->7 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[21:40:52] Core trial 4/50
+  [CORE][latency_core][latency] checkoutservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[21:42:38] Core trial 5/50
+  [CORE][latency_core][latency] paymentservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[21:44:24] Core trial 6/50
+  [CORE][latency_core][latency] cartservice: R=7->7 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[21:46:10] Core trial 7/50
+  [CORE][latency_core][latency] frontend: R=3->3 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[21:47:56] Core trial 8/50
+  [CORE][latency_core][latency] checkoutservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[21:49:42] Core trial 9/50
+  [CORE][latency_core][latency] paymentservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[21:51:28] Core trial 10/50
+  [CORE][latency_core][latency] cartservice: R=7->6 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[21:53:14] Core trial 11/50
+  [CORE][latency_core][latency] paymentservice: R=3->3 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[21:55:00] Core trial 12/50
+  [CORE][latency_core][latency] checkoutservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[21:56:45] Core trial 13/50
+  [CORE][latency_core][latency] frontend: R=3->3 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[21:58:31] Core trial 14/50
+  [CORE][latency_core][latency] productcatalogservice: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:00:17] Core trial 15/50
+  [CORE][latency_core][latency] frontend: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[22:02:03] Core trial 16/50
+  [CORE][latency_core][latency] cartservice: R=6->5 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[22:03:49] Core trial 17/50
+  [CORE][latency_core][latency] paymentservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:05:35] Core trial 18/50
+  [CORE][latency_core][latency] checkoutservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:07:21] Core trial 19/50
+  [CORE][latency_core][latency] frontend: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:09:07] Core trial 20/50
+  [CORE][latency_core][latency] productcatalogservice: R=5->5 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[22:10:53] Core trial 21/50
+  [CORE][latency_core][latency] checkoutservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:12:39] Core trial 22/50
+  [CORE][latency_core][latency] frontend: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:14:25] Core trial 23/50
+  [CORE][latency_core][latency] paymentservice: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:16:11] Core trial 24/50
+  [CORE][latency_core][latency] checkoutservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[22:17:57] Core trial 25/50
+  [CORE][latency_core][latency] frontend: R=4->4 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[22:19:43] Core trial 26/50
+  [CORE][latency_core][latency] frontend: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[22:21:29] Core trial 27/50
+  [CORE][latency_core][latency] cartservice: R=5->4 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[22:23:15] Core trial 28/50
+  [CORE][latency_core][latency] frontend: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[22:25:01] Core trial 29/50
+  [CORE][latency_core][latency] recommendationservice: R=5->6 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:26:47] Core trial 30/50
+  [CORE][latency_core][latency] cartservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[22:28:33] Core trial 31/50
+  [CORE][latency_core][latency] frontend: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[22:30:18] Core trial 32/50
+  [CORE][latency_core][latency] recommendationservice: R=6->7 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:32:04] Core trial 33/50
+  [CORE][latency_core][latency] cartservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[22:33:50] Core trial 34/50
+  [CORE][latency_core][latency] paymentservice: R=5->4 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[22:35:36] Core trial 35/50
+  [CORE][latency_core][latency] productcatalogservice: R=5->4 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[22:37:22] Core trial 36/50
+  [CORE][latency_core][latency] frontend: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:39:08] Core trial 37/50
+  [CORE][latency_core][latency] recommendationservice: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:40:54] Core trial 38/50
+  [CORE][latency_core][latency] recommendationservice: R=8->8 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[22:42:40] Core trial 39/50
+  [CORE][latency_core][latency] recommendationservice: R=8->8 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[22:44:26] Core trial 40/50
+  [CORE][latency_core][latency] paymentservice: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:46:12] Core trial 41/50
+  [CORE][latency_core][latency] frontend: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[22:47:58] Core trial 42/50
+  [CORE][latency_core][latency] recommendationservice: R=8->8 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[22:49:43] Core trial 43/50
+  [CORE][latency_core][latency] paymentservice: R=5->6 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:51:30] Core trial 44/50
+  [CORE][latency_core][latency] frontend: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:53:16] Core trial 45/50
+  [CORE][latency_core][latency] recommendationservice: R=8->7 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[22:55:01] Core trial 46/50
+  [CORE][latency_core][latency] cartservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:56:47] Core trial 47/50
+  [CORE][latency_core][latency] cartservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[22:58:33] Core trial 48/50
+  [CORE][latency_core][latency] paymentservice: R=6->7 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:00:19] Core trial 49/50
+  [CORE][latency_core][latency] cartservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[23:02:05] Core trial 50/50
+  [CORE][latency_core][latency] productcatalogservice: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+────────────────────────────────────────────
+PHASE=latency_core | ERROR=0 | LOAD=420 | MODE=latency
+────────────────────────────────────────────
+  [locust] started: users=420 spawn=25 pid=3262137
+
+── Core trials: 50 × 1 service ──
+
+[23:04:52] Core trial 1/50
+  [CORE][latency_core][latency] recommendationservice: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:06:38] Core trial 2/50
+  [CORE][latency_core][latency] cartservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:08:25] Core trial 3/50
+  [CORE][latency_core][latency] productcatalogservice: R=5->4 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[23:10:11] Core trial 4/50
+  [CORE][latency_core][latency] cartservice: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:11:57] Core trial 5/50
+  [CORE][latency_core][latency] cartservice: R=5->6 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:13:42] Core trial 6/50
+  [CORE][latency_core][latency] checkoutservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:15:28] Core trial 7/50
+  [CORE][latency_core][latency] frontend: R=3->3 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[23:17:14] Core trial 8/50
+  [CORE][latency_core][latency] frontend: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:19:01] Core trial 9/50
+  [CORE][latency_core][latency] frontend: R=4->4 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[23:20:46] Core trial 10/50
+  [CORE][latency_core][latency] productcatalogservice: R=4->4 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[23:22:32] Core trial 11/50
+  [CORE][latency_core][latency] productcatalogservice: R=4->4 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[23:24:18] Core trial 12/50
+  [CORE][latency_core][latency] productcatalogservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[23:26:04] Core trial 13/50
+  [CORE][latency_core][latency] frontend: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:27:50] Core trial 14/50
+  [CORE][latency_core][latency] productcatalogservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:29:36] Core trial 15/50
+  [CORE][latency_core][latency] paymentservice: R=7->6 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[23:31:22] Core trial 16/50
+  [CORE][latency_core][latency] productcatalogservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[23:33:09] Core trial 17/50
+  [CORE][latency_core][latency] paymentservice: R=6->5 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[23:34:55] Core trial 18/50
+  [CORE][latency_core][latency] checkoutservice: R=4->5 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:36:41] Core trial 19/50
+  [CORE][latency_core][latency] checkoutservice: R=5->4 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[23:38:26] Core trial 20/50
+  [CORE][latency_core][latency] checkoutservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[23:40:12] Core trial 21/50
+  [CORE][latency_core][latency] frontend: R=5->6 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:41:58] Core trial 22/50
+  [CORE][latency_core][latency] paymentservice: R=5->6 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:43:44] Core trial 23/50
+  [CORE][latency_core][latency] frontend: R=6->7 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:45:30] Core trial 24/50
+  [CORE][latency_core][latency] cartservice: R=6->6 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[23:47:16] Core trial 25/50
+  [CORE][latency_core][latency] cartservice: R=6->7 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:49:02] Core trial 26/50
+  [CORE][latency_core][latency] checkoutservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[23:50:48] Core trial 27/50
+  [CORE][latency_core][latency] recommendationservice: R=8->9 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:52:34] Core trial 28/50
+  [CORE][latency_core][latency] frontend: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:54:20] Core trial 29/50
+  [CORE][latency_core][latency] frontend: R=8->7 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[23:56:06] Core trial 30/50
+  [CORE][latency_core][latency] cartservice: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:57:52] Core trial 31/50
+  [CORE][latency_core][latency] productcatalogservice: R=3->4 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[23:59:38] Core trial 32/50
+  [CORE][latency_core][latency] recommendationservice: R=9->8 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:01:24] Core trial 33/50
+  [CORE][latency_core][latency] paymentservice: R=6->7 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[00:03:11] Core trial 34/50
+  [CORE][latency_core][latency] recommendationservice: R=8->9 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[00:04:56] Core trial 35/50
+  [CORE][latency_core][latency] productcatalogservice: R=4->3 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:06:42] Core trial 36/50
+  [CORE][latency_core][latency] paymentservice: R=7->6 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:08:28] Core trial 37/50
+  [CORE][latency_core][latency] recommendationservice: R=9->10 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[00:10:14] Core trial 38/50
+  [CORE][latency_core][latency] frontend: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[00:12:00] Core trial 39/50
+  [CORE][latency_core][latency] checkoutservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[00:13:46] Core trial 40/50
+  [CORE][latency_core][latency] cartservice: R=8->9 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[00:15:32] Core trial 41/50
+  [CORE][latency_core][latency] productcatalogservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:17:18] Core trial 42/50
+  [CORE][latency_core][latency] paymentservice: R=6->6 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[00:19:05] Core trial 43/50
+  [CORE][latency_core][latency] cartservice: R=9->8 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:20:51] Core trial 44/50
+  [CORE][latency_core][latency] recommendationservice: R=10->9 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:22:37] Core trial 45/50
+  [CORE][latency_core][latency] recommendationservice: R=9->10 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[00:24:23] Core trial 46/50
+  [CORE][latency_core][latency] cartservice: R=8->7 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:26:09] Core trial 47/50
+  [CORE][latency_core][latency] productcatalogservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:27:55] Core trial 48/50
+  [CORE][latency_core][latency] productcatalogservice: R=1->1 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[00:29:41] Core trial 49/50
+  [CORE][latency_core][latency] paymentservice: R=6->7 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[00:31:27] Core trial 50/50
+  [CORE][latency_core][latency] recommendationservice: R=10->10 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+────────────────────────────────────────────
+PHASE=overload_recovery | ERROR=0 | LOAD=300 | MODE=overload
+────────────────────────────────────────────
+  [locust] started: users=300 spawn=30 pid=3335314
+
+── Core trials: 40 × 1 service ──
+
+[00:34:14] Core trial 1/40
+  [CORE][overload_recovery][overload] frontend: R=8->9 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[00:36:00] Core trial 2/40
+  [CORE][overload_recovery][overload] frontend: R=9->10 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[00:37:46] Core trial 3/40
+  [CORE][overload_recovery][overload] recommendationservice: R=10->10 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[00:39:32] Core trial 4/40
+  [CORE][overload_recovery][overload] productcatalogservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[00:41:18] Core trial 5/40
+  [CORE][overload_recovery][overload] frontend: R=10->9 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:43:04] Core trial 6/40
+  [CORE][overload_recovery][overload] checkoutservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:44:50] Core trial 7/40
+  [CORE][overload_recovery][overload] frontend: R=9->8 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:46:36] Core trial 8/40
+  [CORE][overload_recovery][overload] productcatalogservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[00:48:22] Core trial 9/40
+  [CORE][overload_recovery][overload] productcatalogservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:50:07] Core trial 10/40
+  [CORE][overload_recovery][overload] frontend: R=8->9 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[00:51:54] Core trial 11/40
+  [CORE][overload_recovery][overload] frontend: R=9->10 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[00:53:40] Core trial 12/40
+  [CORE][overload_recovery][overload] productcatalogservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:55:26] Core trial 13/40
+  [CORE][overload_recovery][overload] frontend: R=10->9 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:57:12] Core trial 14/40
+  [CORE][overload_recovery][overload] checkoutservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[00:58:58] Core trial 15/40
+  [CORE][overload_recovery][overload] productcatalogservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[01:00:44] Core trial 16/40
+  [CORE][overload_recovery][overload] checkoutservice: R=1->1 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[01:02:30] Core trial 17/40
+  [CORE][overload_recovery][overload] cartservice: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[01:04:16] Core trial 18/40
+  [CORE][overload_recovery][overload] frontend: R=9->10 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[01:06:02] Core trial 19/40
+  [CORE][overload_recovery][overload] recommendationservice: R=10->9 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[01:07:47] Core trial 20/40
+  [CORE][overload_recovery][overload] checkoutservice: R=1->1 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[01:09:33] Core trial 21/40
+  [CORE][overload_recovery][overload] productcatalogservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[01:11:19] Core trial 22/40
+  [CORE][overload_recovery][overload] frontend: R=10->9 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[01:13:05] Core trial 23/40
+  [CORE][overload_recovery][overload] recommendationservice: R=9->10 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[01:14:51] Core trial 24/40
+  [CORE][overload_recovery][overload] productcatalogservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[01:16:37] Core trial 25/40
+  [CORE][overload_recovery][overload] recommendationservice: R=10->9 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[01:18:23] Core trial 26/40
+  [CORE][overload_recovery][overload] frontend: R=9->8 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[01:20:09] Core trial 27/40
+  [CORE][overload_recovery][overload] recommendationservice: R=9->10 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[01:21:55] Core trial 28/40
+  [CORE][overload_recovery][overload] cartservice: R=8->8 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[01:23:41] Core trial 29/40
+  [CORE][overload_recovery][overload] cartservice: R=8->7 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[01:25:26] Core trial 30/40
+  [CORE][overload_recovery][overload] frontend: R=8->7 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[01:27:12] Core trial 31/40
+  [CORE][overload_recovery][overload] productcatalogservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[01:28:58] Core trial 32/40
+  [CORE][overload_recovery][overload] recommendationservice: R=10->9 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[01:30:44] Core trial 33/40
+  [CORE][overload_recovery][overload] recommendationservice: R=9->8 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[01:32:30] Core trial 34/40
+  [CORE][overload_recovery][overload] frontend: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[01:34:16] Core trial 35/40
+  [CORE][overload_recovery][overload] paymentservice: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[01:36:02] Core trial 36/40
+  [CORE][overload_recovery][overload] recommendationservice: R=8->7 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[01:37:48] Core trial 37/40
+  [CORE][overload_recovery][overload] frontend: R=8->7 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[01:39:34] Core trial 38/40
+  [CORE][overload_recovery][overload] cartservice: R=7->7 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[01:41:20] Core trial 39/40
+  [CORE][overload_recovery][overload] checkoutservice: R=1->1 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[01:43:06] Core trial 40/40
+  [CORE][overload_recovery][overload] checkoutservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+────────────────────────────────────────────
+PHASE=overload_recovery | ERROR=0 | LOAD=340 | MODE=overload
+────────────────────────────────────────────
+  [locust] started: users=340 spawn=30 pid=3395316
+
+── Core trials: 40 × 1 service ──
+
+[01:45:53] Core trial 1/40
+  [CORE][overload_recovery][overload] recommendationservice: R=7->7 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[01:47:39] Core trial 2/40
+  [CORE][overload_recovery][overload] frontend: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[01:49:25] Core trial 3/40
+  [CORE][overload_recovery][overload] productcatalogservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[01:51:11] Core trial 4/40
+  [CORE][overload_recovery][overload] recommendationservice: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[01:52:57] Core trial 5/40
+  [CORE][overload_recovery][overload] checkoutservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[01:54:42] Core trial 6/40
+  [CORE][overload_recovery][overload] productcatalogservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[01:56:28] Core trial 7/40
+  [CORE][overload_recovery][overload] cartservice: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[01:58:14] Core trial 8/40
+  [CORE][overload_recovery][overload] cartservice: R=8->7 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[02:00:00] Core trial 9/40
+  [CORE][overload_recovery][overload] paymentservice: R=8->8 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[02:01:46] Core trial 10/40
+  [CORE][overload_recovery][overload] frontend: R=8->8 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[02:03:32] Core trial 11/40
+  [CORE][overload_recovery][overload] productcatalogservice: R=1->2 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[02:05:18] Core trial 12/40
+  [CORE][overload_recovery][overload] checkoutservice: R=2->3 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[02:07:04] Core trial 13/40
+  [CORE][overload_recovery][overload] frontend: R=8->8 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[02:08:50] Core trial 14/40
+  [CORE][overload_recovery][overload] cartservice: R=7->6 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[02:10:36] Core trial 15/40
+  [CORE][overload_recovery][overload] recommendationservice: R=8->7 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[02:12:22] Core trial 16/40
+  [CORE][overload_recovery][overload] cartservice: R=6->6 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[02:14:08] Core trial 17/40
+  [CORE][overload_recovery][overload] frontend: R=8->7 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[02:15:54] Core trial 18/40
+  [CORE][overload_recovery][overload] recommendationservice: R=7->6 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[02:17:40] Core trial 19/40
+  [CORE][overload_recovery][overload] frontend: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[02:19:26] Core trial 20/40
+  [CORE][overload_recovery][overload] checkoutservice: R=3->2 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[02:21:12] Core trial 21/40
+  [CORE][overload_recovery][overload] recommendationservice: R=6->7 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[02:22:58] Core trial 22/40
+  [CORE][overload_recovery][overload] cartservice: R=6->7 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[02:24:44] Core trial 23/40
+  [CORE][overload_recovery][overload] cartservice: R=7->8 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[02:26:30] Core trial 24/40
+  [CORE][overload_recovery][overload] productcatalogservice: R=2->2 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[02:28:16] Core trial 25/40
+  [CORE][overload_recovery][overload] frontend: R=8->9 action=1 delta=1
+  ✓ Core trial done: 1 sample
+
+[02:30:02] Core trial 26/40
+  [CORE][overload_recovery][overload] checkoutservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[02:31:48] Core trial 27/40
+  [CORE][overload_recovery][overload] productcatalogservice: R=2->1 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[02:33:34] Core trial 28/40
+  [CORE][overload_recovery][overload] checkoutservice: R=1->1 action=0 delta=0
+  ✓ Core trial done: 1 sample
+
+[02:35:20] Core trial 29/40
+  [CORE][overload_recovery][overload] recommendationservice: R=7->6 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[02:37:06] Core trial 30/40
+  [CORE][overload_recovery][overload] paymentservice: R=8->7 action=-1 delta=-1
+  ✓ Core trial done: 1 sample
+
+[02:38:52] Core trial 31/40
+
+[STOP] Reached time budget: 39668s >= 39600s
+[STOP] Ending collection safely.
+
+[CLEANUP] Stop Locust, disable fault injection, restore HPA...
+[CLEANUP] Restore HPA...

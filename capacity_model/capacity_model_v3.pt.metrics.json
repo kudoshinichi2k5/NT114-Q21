@@ -1,0 +1,151 @@
+{
+  "csv_path": "./action_effect_data/action_effect_pairs_v3.csv",
+  "out_path": "capacity_model_v3.pt",
+  "transition_mode": "learned_delta_cpu_lat_only",
+  "n_samples": 946,
+  "n_train": 756,
+  "n_val": 190,
+  "best_epoch": 129,
+  "best_val_loss": 0.009134254418313503,
+  "services": [
+    "adservice",
+    "cartservice",
+    "checkoutservice",
+    "currencyservice",
+    "emailservice",
+    "frontend",
+    "paymentservice",
+    "productcatalogservice",
+    "recommendationservice",
+    "shippingservice"
+  ],
+  "feature_names": [
+    "r_old_norm",
+    "r_new_norm",
+    "action",
+    "effective_delta",
+    "cpu_before_norm",
+    "rps_before_norm",
+    "err_before_norm",
+    "lat_before_norm",
+    "load_norm",
+    "svc_adservice",
+    "svc_cartservice",
+    "svc_checkoutservice",
+    "svc_currencyservice",
+    "svc_emailservice",
+    "svc_frontend",
+    "svc_paymentservice",
+    "svc_productcatalogservice",
+    "svc_recommendationservice",
+    "svc_shippingservice"
+  ],
+  "target_names": [
+    "delta_cpu_norm",
+    "delta_lat_norm"
+  ],
+  "after_target_names": [
+    "cpu_after_norm",
+    "lat_after_norm"
+  ],
+  "rule_outputs": {
+    "rps": "persistence",
+    "err": "persistence_or_external_rule"
+  },
+  "metrics": {
+    "delta": {
+      "persistence_zero": {
+        "cpu": {
+          "mae_delta_norm": 0.017422355711460114,
+          "rmse_delta_norm": 0.03270639851689339,
+          "r2_delta_norm": -0.005391240119934082
+        },
+        "lat": {
+          "mae_delta_norm": 0.009824337437748909,
+          "rmse_delta_norm": 0.031163297593593597,
+          "r2_delta_norm": -0.02445971965789795
+        }
+      },
+      "handcrafted": {
+        "cpu": {
+          "mae_delta_norm": 0.040075965225696564,
+          "rmse_delta_norm": 0.07065477967262268,
+          "r2_delta_norm": -3.6919426918029785
+        },
+        "lat": {
+          "mae_delta_norm": 0.01350137684494257,
+          "rmse_delta_norm": 0.0332486629486084,
+          "r2_delta_norm": -0.16615533828735352
+        }
+      },
+      "learned_cpu_lat": {
+        "cpu": {
+          "mae_delta_norm": 0.017171669751405716,
+          "rmse_delta_norm": 0.03244607150554657,
+          "r2_delta_norm": 0.010550081729888916
+        },
+        "lat": {
+          "mae_delta_norm": 0.010626333765685558,
+          "rmse_delta_norm": 0.031084271147847176,
+          "r2_delta_norm": -0.01927053928375244
+        }
+      }
+    },
+    "after_state": {
+      "persistence": {
+        "cpu": {
+          "mae_raw": 26.13353157043457,
+          "rmse_raw": 49.05959701538086,
+          "r2_raw": 0.9655482769012451,
+          "mae_norm": 0.017422355711460114,
+          "rmse_norm": 0.03270639851689339,
+          "r2_norm": 0.9655482769012451
+        },
+        "lat": {
+          "mae_raw": 0.009824337437748909,
+          "rmse_raw": 0.031163297593593597,
+          "r2_raw": 0.9795162081718445,
+          "mae_norm": 0.009824337437748909,
+          "rmse_norm": 0.031163297593593597,
+          "r2_norm": 0.9795162081718445
+        }
+      },
+      "handcrafted": {
+        "cpu": {
+          "mae_raw": 60.113948822021484,
+          "rmse_raw": 105.98217010498047,
+          "r2_raw": 0.8392211198806763,
+          "mae_norm": 0.040075965225696564,
+          "rmse_norm": 0.07065477967262268,
+          "r2_norm": 0.839221179485321
+        },
+        "lat": {
+          "mae_raw": 0.01350137684494257,
+          "rmse_raw": 0.0332486629486084,
+          "r2_raw": 0.9766830205917358,
+          "mae_norm": 0.01350137684494257,
+          "rmse_norm": 0.0332486629486084,
+          "r2_norm": 0.9766830205917358
+        }
+      },
+      "learned_cpu_lat": {
+        "cpu": {
+          "mae_raw": 25.747838973999023,
+          "rmse_raw": 48.66781997680664,
+          "r2_raw": 0.9660962820053101,
+          "mae_norm": 0.017165226861834526,
+          "rmse_norm": 0.03244521841406822,
+          "r2_norm": 0.9660962820053101
+        },
+        "lat": {
+          "mae_raw": 0.010626333765685558,
+          "rmse_raw": 0.031084271147847176,
+          "r2_raw": 0.9796199202537537,
+          "mae_norm": 0.010626333765685558,
+          "rmse_norm": 0.031084271147847176,
+          "r2_norm": 0.9796199202537537
+        }
+      }
+    }
+  }
+}
